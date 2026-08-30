@@ -295,3 +295,7 @@ slides.pdf
 ## LaTeX Workshop temporary build directories
 out/
 build/
+
+## Local rendering artifacts used for visual QA
+ai/preview/
+*-SAVE-ERROR

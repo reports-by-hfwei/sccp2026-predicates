@@ -1,0 +1,129 @@
+% !TEX program = pdflatex
+\documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
+\usetheme{SimplePlus}
+\usepackage{graphicx,booktabs,mathtools,xspace,tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage[natbib=true,backend=biber,style=authoryear,maxbibnames=99]{biblatex}
+\setbeamertemplate{bibliography item}[article]
+\renewcommand*{\bibfont}{\footnotesize}
+\addbibresource{predicates.bib}
+\input{newcommands}
+
+\title[Predicates and Consistency]{Specifying and Analyzing Transactional Consistency Models with Predicates}
+\author{Hengfeng Wei}
+\institute{Hunan University}
+\date{SCCP 2026 \enspace|\enspace September 3, 2026}
+\newcommand{\accentred}[1]{\textcolor{BrickRed}{#1}}
+\newcommand{\darkblue}[1]{\textcolor{MidnightBlue}{#1}}
+
+\begin{document}
+\begin{frame}\titlepage\vfill\centering\small\textcolor{black!55}{A semantic and graph-theoretic foundation for predicate operations}\end{frame}
+
+\begin{frame}{A predicate result contains more than returned rows}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.62\textwidth}\centering\includegraphics[width=\linewidth]{figs/predicate-observation.pdf}\end{column}
+    \begin{column}{.34\textwidth}\large
+      \darkblue{Item reads:} value observed\\[1.2em]
+      \accentred{Predicate reads:} returned rows \textbf{and excluded rows}\\[1.2em]
+      \textcolor{black!55}{Phantom-style interactions need an explanation for both.}
+    \end{column}
+  \end{columns}\vfill\hfill\ncite{CritiqueSQL:SIGMOD1995,Adya:PhDThesis1999}
+\end{frame}
+
+\begin{frame}{The gap: familiar foundations stop at named items}
+  \centering
+  \begin{tikzpicture}[font=\large,>=Latex,box/.style={draw=MidnightBlue,rounded corners=4pt,minimum width=32mm,minimum height=16mm,align=center,fill=MidnightBlue!5}]
+    \node[box] (s) {Execution-level\\specifications}; \node[box,right=8mm of s] (g) {Dependency-graph\\characterizations}; \node[box,right=8mm of g] (t) {Checking /\\robustness};
+    \draw[-Latex,very thick,MidnightBlue] (s)--(g); \draw[-Latex,very thick,MidnightBlue] (g)--(t);
+    \node[below=11mm of g,draw=BrickRed,fill=BrickRed!8,rounded corners=4pt,inner sep=7pt,text width=88mm,align=center] {\accentred{Predicate operations are missing from the semantic--graph correspondence.}};
+  \end{tikzpicture}\vfill
+  \large\centering\textbf{Question:} Can we recover an exact, predicate-aware foundation for $\ser$ and $\si$?
+\end{frame}
+
+\begin{frame}{Semantic anchor: explain every covered item}
+  \centering\Large
+  \begin{beamercolorbox}[rounded=true,center,sep=1.4em]{block title}
+    \textsf{VIS/AR execution framework}
+  \end{beamercolorbox}\vspace{1.2em}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.46\textwidth}\centering\darkblue{Visible transactions}\\[.5em]\large provide the version set\end{column}
+    \begin{column}{.08\textwidth}\centering\Huge$\Longrightarrow$\end{column}
+    \begin{column}{.46\textwidth}\centering\accentred{Latest visible writer}\\[.5em]\large explains each covered item\end{column}
+  \end{columns}\vfill\large
+  {\normalsize\textbf{Returned item:} witness matches $P$ \qquad\textbf{Omitted item:} witness does not match $P$}\vfill\hfill\ncite{Cerone:CONCUR2015}
+\end{frame}
+
+\begin{frame}{From a semantic witness to graph edges}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.53\textwidth}\centering
+      \begin{tikzpicture}[font=\normalsize,>=Latex,tx/.style={draw=MidnightBlue,rounded corners=3pt,fill=MidnightBlue!5,minimum width=23mm,minimum height=11mm,align=center}]
+        \node[tx](w){$T_0$\\$x=\mathrm{closed}$}; \node[tx,right=20mm of w](r){$T_Q$\\$P(x)$}; \node[tx,below=16mm of r](u){$T_1$\\$x=\mathrm{open}$};
+        \draw[-Latex,very thick,teal](w)--node[above]{$\PredWR(x)$}(r); \draw[-Latex,very thick,blue](w)to[bend right=28]node[left]{$\WW(x)$}(u); \draw[-Latex,very thick,BrickRed](r)--node[right]{$\PredRW(x)$}(u);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{.42\textwidth}\large\textbf{$\PredWR$}: version witness\\[.7em]\textbf{$\PredRW$}: later writer changes the observed result\\[.7em]\darkblue{Result-sensitive:}\quad $\match(T_0,T_Q,T_1,x)$\end{column}
+  \end{columns}\vfill\centering\textcolor{black!60}{The graph records why the result was observed --- including the absence of $x$.}
+\end{frame}
+
+\begin{frame}{Exact graph characterizations}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.48\textwidth}\centering
+      {\Large\bfseries Serializability}\\[.8em]
+      {\large $\History\models\ser$}\\[.35em]
+      {\large $\Longleftrightarrow$}\\[.45em]
+      \large internally consistent +\\\darkblue{acyclic} predicate-aware graph
+    \end{column}
+    \begin{column}{.48\textwidth}\centering
+      {\Large\bfseries Snapshot isolation}\\[.8em]
+      {\large $\History\models\si$}\\[.35em]
+      {\large $\Longleftrightarrow$}\\[.45em]
+      \large internally consistent +\\every cycle has \darkblue{two adjacent}\\$\RW$ / $\PredRW$ edges
+    \end{column}
+  \end{columns}\vfill\centering\large\accentred{Not analogy: both equivalences are proved against the predicate-aware axioms.}\vfill\hfill\ncite{AnalysingSI:JACM2018}
+\end{frame}
+
+\begin{frame}{Why the proof bridge matters}
+  \centering\includegraphics[width=.94\textwidth]{figs/results-bridge.pdf}\vfill\large
+  \begin{itemize}\setlength\itemsep{.7em}\item Predicate graphs are \textbf{observable-history} objects.\item Axiomatics supplies the \textbf{semantic} correctness target.\item The bridge validates graph-based analysis beyond item-only workloads.\end{itemize}
+\end{frame}
+
+\begin{frame}{Related work disagrees on one crucial edge}
+  \centering\includegraphics[width=.96\textwidth]{figs/design-space.pdf}\vfill
+  \begin{columns}[t,onlytextwidth]\begin{column}{.31\textwidth}\centering\small\ncite{Vbox:arXiv2025}\end{column}\begin{column}{.34\textwidth}\centering\small\ncite{Adya:PhDThesis1999,Adya:ICDE2000}\end{column}\begin{column}{.31\textwidth}\centering\small\ncite{ComplexityMIL:CAV2025}\end{column}\end{columns}
+\end{frame}
+
+\begin{frame}{What the design space tells us}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.48\textwidth}\centering
+      \begin{tikzpicture}[font=\large,>=Latex]
+        \node[draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,text width=45mm,align=center,inner sep=7pt](p){A fixed common\\$\PredWR/\WW$ base}; \node[draw=teal,rounded corners=4pt,fill=teal!8,text width=45mm,align=center,inner sep=7pt,below=11mm of p](r){Any $R$ in the\\admissible interval}; \node[draw=BrickRed,rounded corners=4pt,fill=BrickRed!8,text width=45mm,align=center,inner sep=7pt,below=11mm of r](c){Same existential\\$\ser/\si$ characterization};
+        \draw[-Latex,very thick,MidnightBlue](p)--(r);\draw[-Latex,very thick,MidnightBlue](r)--(c);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{.45\textwidth}\large\textbf{The theorem is semantic, not a claim that edge sets coincide.}\\[1.2em]\accentred{Practical consequence:} choose an admissible edge policy for an analysis, while retaining its history-level meaning.\\[1.2em]\textcolor{black!55}{Checking cost can still differ.}\end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Future work: turn the foundation into analysis tools}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.47\textwidth}\centering
+      \tikz\node[draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue,text=white,text width=.8\columnwidth,minimum height=16mm,align=center]{\large Efficient black-box\\checking};\vspace{1.2em}
+      \large Recover version sets\\and version order
+    \end{column}
+    \begin{column}{.47\textwidth}\centering
+      \tikz\node[draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue,text=white,text width=.8\columnwidth,minimum height=16mm,align=center]{\large Robustness analysis};\vspace{1.2em}
+      \large Extend static reasoning\\to predicate operations
+    \end{column}
+  \end{columns}\vfill\centering\darkblue{Both need a semantics-preserving predicate dependency graph.}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}\printbibliography\end{frame}
+
+\begin{frame}{Take away}
+  \centering\vspace{.8em}{\LARGE\bfseries Predicate results are observations over a covered set.}\\[1.4em]
+  \begin{tikzpicture}[font=\large,>=Latex,box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,minimum width=34mm,minimum height=15mm,align=center}]
+    \node[box](a){axiomatic\\predicate semantics};\node[box,right=8mm of a](b){predicate-aware\\dependency graphs};\node[box,right=8mm of b](c){exact $\ser/\si$\\characterizations};\draw[-Latex,very thick,MidnightBlue](a)--(b);\draw[-Latex,very thick,MidnightBlue](b)--(c);
+  \end{tikzpicture}\vfill\Large\accentred{A principled basis for checking and analyzing databases with predicates.}
+\end{frame}
+
+\end{document}

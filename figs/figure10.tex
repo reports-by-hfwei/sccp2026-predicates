@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[paperwidth=18cm,paperheight=11cm,margin=1cm]{geometry}
+\usepackage[tt=false,type1=true]{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xspace}
+\usepackage{environ}
+\usepackage{caption}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\ourtool}{\textsc{VeriStrong}\xspace}
+\DeclareCaptionLabelFormat{figureonly}{#1:}
+
+% Kept identical to the paper's scaling helper so the original plot geometry
+% and typography are preserved in this standalone export.
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
+\begin{document}
+\setlength{\textwidth}{16cm}
+\setlength{\textfloatsep}{0pt}
+\setcounter{figure}{9}
+\thispagestyle{empty}
+\captionsetup[figure]{
+  font=Large,
+  labelformat=figureonly,
+  labelsep=space,
+  justification=centering,
+  singlelinecheck=false
+}
+\input{figs-paper/eval/various/runtime.tex}
+\end{document}

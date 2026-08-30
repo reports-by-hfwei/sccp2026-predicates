@@ -1,0 +1,24 @@
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{xcolor}
+\usetikzlibrary{arrows.meta,positioning}
+\definecolor{Navy}{RGB}{20,54,92}
+\definecolor{Teal}{RGB}{17,119,125}
+\definecolor{Accent}{RGB}{184,63,49}
+\newcommand{\VIS}{\textup{\textsf{VIS}}}
+\newcommand{\AR}{\textup{\textsf{AR}}}
+\newcommand{\WR}{\textup{\textsf{WR}}}
+\newcommand{\WW}{\textup{\textsf{WW}}}
+\newcommand{\RW}{\textup{\textsf{RW}}}
+\newcommand{\PredWR}{\textup{\textsf{Pred-WR}}}
+\newcommand{\PredRW}{\textup{\textsf{Pred-RW}}}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily, >=Latex,
+  box/.style={draw=Navy, rounded corners=5pt, fill=Navy!5, minimum width=36mm, minimum height=16mm, align=center}, arrow/.style={-Latex, very thick, Navy}]
+  \node[box] (sem) {\textbf{Axiomatic semantics}\\[-2pt]\scriptsize $(\VIS,\AR)$ + predicate observations};
+  \node[box, right=19mm of sem] (graph) {\textbf{Dependency graph}\\[-2pt]\scriptsize $\WR,\WW,\RW,\PredWR,\PredRW$};
+  \node[box, right=19mm of graph] (analysis) {\textbf{Sound analyses}\\[-2pt]\scriptsize checking \quad protocol verification \quad robustness};
+  \draw[arrow] (sem) -- node[above, font=\small] {exact characterization} (graph);
+  \draw[arrow] (graph) -- node[above, font=\small] {foundation} (analysis);
+  \node[below=7mm of graph, align=center, text=Accent, font=\bfseries] {observable histories \,$\longleftrightarrow$\, executions};
+\end{tikzpicture}
+\end{document}

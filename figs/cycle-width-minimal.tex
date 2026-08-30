@@ -1,0 +1,43 @@
+\documentclass[border=8pt]{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        width=12cm,
+        height=6cm,
+        xlabel={width},
+        ylabel={proportion \%},
+        xlabel near ticks,
+        ylabel near ticks,
+        ymin=0,
+        ymax=100,
+        ytick={10,20,30,40,50,75,100},
+        xtick={1,2,3,4,5,6,7,8,9,10,15,20},
+        tick style={draw=none},
+        tick label style={font=\large},
+        label style={font=\large},
+        legend pos=north east,
+        legend style={draw=none, font=\large, /tikz/every even column/.append style={column sep=0.5em}},
+        mark size=2.5pt,
+        line width=0.8pt,
+    ]
+        \addplot[color=teal, mark=o] table [x=param, y=gtpcc, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+        \addplot[color=blue, mark=square] table [x=param, y=gtwitter, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+        \addplot[color=green!50!black, mark=triangle] table [x=param, y=grubis, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+        \addplot[color=red!65!black, mark=diamond] table [x=param, y=grh, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+        \addplot[color=brown, mark=pentagon] table [x=param, y=grw, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+        \addplot[color=orange, mark=asterisk] table [x=param, y=gwh, col sep=comma]
+            {figs-paper/cycle-width/data/minimized-data.csv};
+
+        \legend{G-TPCC, G-Twitter, G-RUBiS, YCSB read-heavy (95\% read), YCSB balanced (50\% read), YCSB write-heavy (30\% read)}
+    \end{axis}
+\end{tikzpicture}
+\end{document}
