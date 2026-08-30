@@ -47,7 +47,7 @@
   \end{beamercolorbox}\vspace{1.2em}
   \begin{columns}[c,onlytextwidth]
     \begin{column}{.46\textwidth}\centering\darkblue{Visible transactions}\\[.5em]\large provide the version set\end{column}
-    \begin{column}{.08\textwidth}\centering\Huge$\Longrightarrow$\end{column}
+    \begin{column}{.08\textwidth}\centering\Large$\Longrightarrow$\end{column}
     \begin{column}{.46\textwidth}\centering\accentred{Latest visible writer}\\[.5em]\large explains each covered item\end{column}
   \end{columns}\vfill\large
   {\normalsize\textbf{Returned item:} witness matches $P$ \qquad\textbf{Omitted item:} witness does not match $P$}\vfill\hfill\ncite{Cerone:CONCUR2015}
@@ -57,7 +57,7 @@
   \begin{columns}[c,onlytextwidth]
     \begin{column}{.53\textwidth}\centering
       \begin{tikzpicture}[font=\normalsize,>=Latex,tx/.style={draw=MidnightBlue,rounded corners=3pt,fill=MidnightBlue!5,minimum width=23mm,minimum height=11mm,align=center}]
-        \node[tx](w){$T_0$\\$x=\mathrm{closed}$}; \node[tx,right=20mm of w](r){$T_Q$\\$P(x)$}; \node[tx,below=16mm of r](u){$T_1$\\$x=\mathrm{open}$};
+        \node[tx](w){$T_0$\\closed}; \node[tx,right=20mm of w](r){$T_Q$\\$P(x)$}; \node[tx,below=16mm of r](u){$T_1$\\open};
         \draw[-Latex,very thick,teal](w)--node[above]{$\PredWR(x)$}(r); \draw[-Latex,very thick,blue](w)to[bend right=28]node[left]{$\WW(x)$}(u); \draw[-Latex,very thick,BrickRed](r)--node[right]{$\PredRW(x)$}(u);
       \end{tikzpicture}
     \end{column}
