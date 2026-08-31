@@ -1,1 +1,80 @@
-% review-predicates.tex
+\begin{frame}{Review: adding predicates changes the object of analysis}
+  \centering\vspace{.5em}
+  {\LARGE What we know about transactional consistency}\\[.35em]
+  {\LARGE\accentred{with predicates}}\vfill
+  \begin{tikzpicture}[>=Latex,font=\large,box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,text width=36mm,minimum height=15mm,align=center}]
+    \node[box] (p) {predicate\\operations};
+    \node[box,right=12mm of p] (d) {predicate\\dependencies};
+    \node[box,right=12mm of d] (c) {consistency\\characterization};
+    \draw[-Latex,very thick,BrickRed] (p)--(d);
+    \draw[-Latex,very thick,BrickRed] (d)--(c);
+  \end{tikzpicture}\vfill
+  \large\darkblue{The question is no longer only which version of an item was read.}
+\end{frame}
+
+\begin{frame}{Review: specifications still speak in item-level terms}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.46\textwidth}\centering
+      \includegraphics[width=.70\linewidth]{figs/notions-cacm1976.png}\\[.6em]
+      {\Large\bfseries SER}\\[.35em]\darkblue{serial execution}
+    \end{column}
+    \begin{column}{.46\textwidth}\centering
+      \includegraphics[width=.82\linewidth]{figs/critique-sigmod1995.png}\\[.6em]
+      {\Large\bfseries SI}\\[.35em]\accentred{snapshot + write-conflict control}
+    \end{column}
+  \end{columns}\vfill
+  \centering\large\textbf{Predicate semantics is not supplied by these item-level specifications.}\vfill\hfill\ncite{Notions:CACM1976,CritiqueSQL:SIGMOD1995}
+\end{frame}
+
+\begin{frame}{Review: predicate graphs extend serializability analysis}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.40\textwidth}\centering
+      \includegraphics[width=.88\linewidth]{figs/adya-phdthesis1999.png}\\[.7em]
+      \includegraphics[width=.88\linewidth]{figs/adya-icde2000.png}
+    \end{column}
+    \begin{column}{.53\textwidth}\centering
+      {\LARGE\bfseries Predicate dependency graph}\\[.9em]
+      \large Predicate reads induce\\additional dependency edges\\[.8em]
+      \accentred{But which later writers should be connected?}
+    \end{column}
+  \end{columns}\vfill\hfill\ncite{Adya:PhDThesis1999,Adya:ICDE2000}
+\end{frame}
+
+\begin{frame}{Review: predicate anti-dependency is a design choice}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.25\textwidth}\centering\includegraphics[width=\linewidth]{figs/vbox-arxiv2025.png}\\[.6em]\small earliest match-changing writer\end{column}
+    \begin{column}{.25\textwidth}\centering
+      \begin{tikzpicture}[font=\large,box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,text width=28mm,minimum height=17mm,align=center}]
+        \node[box] {\textbf{$\PredRW$}\\\small any match-changing writer};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{.25\textwidth}\centering\includegraphics[width=\linewidth]{figs/complexity-cav2025.png}\\[.6em]\small every later writer\end{column}
+  \end{columns}\vfill
+  \centering\Large $\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$\\[.6em]
+  \large\accentred{Different edge sets; potentially different checking costs.}\vfill\hfill\ncite{Vbox:arXiv2025,ComplexityMIL:CAV2025}
+\end{frame}
+
+\begin{frame}{Review: SI inherits the same predicate-edge question}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.39\textwidth}\centering\includegraphics[width=.90\linewidth]{figs/adya-phdthesis1999.png}\end{column}
+    \begin{column}{.54\textwidth}\centering
+      {\LARGE\bfseries SI cycle test}\\[.8em]
+      \large Every cycle needs two adjacent\\anti-dependencies\\[.8em]
+      \accentred{Do predicate anti-dependencies preserve this characterization?}
+    \end{column}
+  \end{columns}\vfill\hfill\ncite{Adya:PhDThesis1999,AnalysingSI:JACM2018}
+\end{frame}
+
+\begin{frame}{Review: existing axioms do not model predicate operations}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.44\textwidth}\centering
+      \includegraphics[width=.95\linewidth,height=33mm,keepaspectratio]{figs/framework-concur2015.png}\\[.6em]
+      \darkblue{$(\VIS,\AR)$ execution model}
+    \end{column}
+    \begin{column}{.44\textwidth}\centering
+      \includegraphics[width=.95\linewidth,height=33mm,keepaspectratio]{figs/clientcentric-podc2017.png}\\[.6em]
+      \darkblue{client-centric specifications}
+    \end{column}
+  \end{columns}\vfill
+  \centering\Large\accentred{Missing: an explanation of both returned and omitted predicate items.}\vfill\hfill\ncite{Cerone:CONCUR2015,ClientCentric:PODC2017}
+\end{frame}
