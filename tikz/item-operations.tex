@@ -1,0 +1,22 @@
+\documentclass[tikz, border=2pt]{standalone}
+
+\usepackage[dvipsnames]{xcolor}
+\usetikzlibrary{positioning}
+
+\begin{document}
+  \begin{tikzpicture}[
+      font = \large,
+      op/.style={
+        draw = MidnightBlue,
+        rounded corners = 4pt,
+        fill = MidnightBlue!5,
+        text width = 31mm,
+        minimum height = 13mm,
+        align = center,
+      },
+    ]
+    \node[op] {\textbf{Read}$(x,v)$\\\small Read$(2,60)$};
+    \node[op, below = 7mm of current bounding box.south]
+      {\textbf{Write}$(x,v)$\\\small Write$(3,40)$};
+  \end{tikzpicture}
+\end{document}

@@ -39,6 +39,12 @@
 - Prefer supplied figures.  If a new diagram is necessary, use TikZ source in
   `tikz/`, compile it to PDF, copy the PDF to `figs/`, and include it with
   `\fig`.
+- Do not embed TikZ code in `sections/*.tex`.  Each diagram must have a
+  separately compilable `standalone` source in `tikz/`; commit its generated
+  PDF in `figs/` and include that PDF with `\fig`.
+- Format TikZ option lists with spaces around assignments and after commas,
+  e.g., `align = center` and `-Latex, very thick`.  Put long styles on separate
+  indented lines.
 
 ## Validation and delivery
 

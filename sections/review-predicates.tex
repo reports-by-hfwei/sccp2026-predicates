@@ -1,17 +1,18 @@
 % review-predicates.tex
 
 \begin{frame}{Review: Downstream Tasks}
-  \centering
-  \renewcommand{\arraystretch}{1.45}
-  \begin{tabular}{@{}p{.30\textwidth}p{.57\textwidth}@{}}
-    \toprule
-    \textbf{Task} & \textbf{Representative work} \\
-    \midrule
-    Black-box checking & Elle, COBRA, PolySI, VeriStrong \\
-    CC protocol verification & execution-based verification \\
-    Robustness & robustness against weaker consistency \\
-    \bottomrule
-  \end{tabular}
+  \begin{center}
+    \renewcommand{\arraystretch}{1.45}
+    \begin{tabular}{@{}p{.30\textwidth}p{.57\textwidth}@{}}
+      \toprule
+      \textbf{Task} & \textbf{Representative work} \\
+      \midrule
+      Black-box checking & Elle, COBRA, PolySI, VeriStrong \\
+      CC protocol verification & execution-based verification \\
+      Robustness & robustness against weaker consistency \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
   \vfill
   \begin{center}
     \large\red{All depend on a faithful link between observed histories and consistency.}
@@ -27,15 +28,7 @@
   \end{center}
   \vfill
   \begin{center}
-    \begin{tikzpicture}[>=Latex,font=\large,
-        box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,
-          text width=36mm,minimum height=15mm,align=center}]
-      \node[box] (p) {predicate\\operations};
-      \node[box,right=12mm of p] (d) {predicate\\dependencies};
-      \node[box,right=12mm of d] (c) {consistency\\characterization};
-      \draw[-Latex,very thick,BrickRed] (p) -- (d);
-      \draw[-Latex,very thick,BrickRed] (d) -- (c);
-    \end{tikzpicture}
+    \fig{.80}{figs/predicate-consistency-review.pdf}
   \end{center}
   \vfill
   \begin{center}
@@ -95,15 +88,7 @@
 
     \column{0.51\textwidth}
     \begin{center}
-      \begin{tikzpicture}[>=Latex,font=\normalsize,
-          tx/.style={draw=MidnightBlue,rounded corners=3pt,fill=MidnightBlue!5,
-            minimum width=23mm,minimum height=11mm,align=center}]
-        \node[tx] (w) {$T_0$\\closes $x$};
-        \node[tx,right=16mm of w] (q) {$T_Q$\\$P(x)$};
-        \node[tx,below=14mm of q] (u) {$T_1$\\opens $x$};
-        \draw[-Latex,very thick,teal] (w) -- node[above] {$\PredWR$} (q);
-        \draw[-Latex,very thick,BrickRed] (q) -- node[right] {$\PredRW$} (u);
-      \end{tikzpicture}\\[.7em]
+      \fig{.85}{figs/predicate-dependency-example.pdf}\\[.7em]
       \small A predicate read depends on a witness and on later result-changing writers.
     \end{center}
   \end{columns}

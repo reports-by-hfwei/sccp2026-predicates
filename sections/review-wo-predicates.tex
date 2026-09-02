@@ -118,7 +118,7 @@
   \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}
 
-\begin{frame}{Review}
+\begin{frame}{Review (Summary)}
   \begin{center}
     \vspace{.6em}
     {\LARGE What we know about transactional consistency models}\\[.35em]
@@ -126,18 +126,6 @@
   \end{center}
   \vfill
   \begin{center}
-    \begin{tikzpicture}[>=Latex,font=\large,
-        box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,
-          text width=35mm,minimum height=15mm,align=center}]
-      \node[box] (s) {specifications};
-      \node[box,right=10mm of s] (g) {dependency-graph\\characterizations};
-      \node[box,right=10mm of g] (a) {downstream\\analysis};
-      \draw[-Latex,very thick,MidnightBlue] (s) -- (g);
-      \draw[-Latex,very thick,MidnightBlue] (g) -- (a);
-    \end{tikzpicture}
-  \end{center}
-  \vfill
-  \begin{center}
-    \large\blue{A mature correspondence for named items and item dependencies.}
+    \fig{.58}{figs/item-consistency-review.pdf}
   \end{center}
 \end{frame}

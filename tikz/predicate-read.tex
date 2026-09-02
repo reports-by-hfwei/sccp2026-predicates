@@ -1,0 +1,20 @@
+\documentclass[tikz, border=2pt]{standalone}
+
+\usepackage[dvipsnames]{xcolor}
+
+\begin{document}
+  \begin{tikzpicture}[
+      font = \large,
+      op/.style={
+        draw = BrickRed,
+        rounded corners = 4pt,
+        fill = BrickRed!8,
+        text width = 31mm,
+        minimum height = 22mm,
+        align = center,
+      },
+    ]
+    \node[op] {\textbf{PredRead}$(P,M)$\\[.35em]
+      \small $P:\ \mathit{Salary}<80$};
+  \end{tikzpicture}
+\end{document}

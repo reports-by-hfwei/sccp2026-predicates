@@ -1,0 +1,25 @@
+\documentclass[tikz, border=2pt]{standalone}
+
+\usepackage[dvipsnames]{xcolor}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{document}
+  \begin{tikzpicture}[
+      >=Latex,
+      font = \large,
+      box/.style={
+        draw = MidnightBlue,
+        rounded corners = 4pt,
+        fill = MidnightBlue!5,
+        text width = 36mm,
+        minimum height = 15mm,
+        align = center,
+      },
+    ]
+    \node[box] (p) {predicate\\operations};
+    \node[box, right = 12mm of p] (d) {predicate\\dependencies};
+    \node[box, right = 12mm of d] (c) {consistency\\characterization};
+    \draw[-Latex, very thick, BrickRed] (p) -- (d);
+    \draw[-Latex, very thick, BrickRed] (d) -- (c);
+  \end{tikzpicture}
+\end{document}

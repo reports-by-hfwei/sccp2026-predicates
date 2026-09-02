@@ -1,0 +1,27 @@
+\documentclass[tikz, border=2pt]{standalone}
+
+\usepackage[dvipsnames]{xcolor}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+
+\begin{document}
+  \begin{tikzpicture}[
+      >=Latex,
+      font = \large,
+      box/.style={
+        draw = MidnightBlue,
+        rounded corners = 4pt,
+        fill = MidnightBlue!5,
+        align = center,
+        inner sep = 2mm,
+      },
+    ]
+    \node[ellipse, draw = MidnightBlue, fill = MidnightBlue!5] (c)
+      {Characterizations};
+    \node[box, below left = 1.0cm and 0.0cm of c] (s) {Specs};
+    \node[box, below right = 1.0cm and 0.0cm of c] (g) {Depgraphs};
+    \node[box, right = 1.5cm of c] (a) {Downstream\\Analysis};
+    \draw[-Latex, very thick, MidnightBlue] (c) -- (s);
+    \draw[-Latex, very thick, MidnightBlue] (c) -- (g);
+    \draw[-Latex, very thick, MidnightBlue] (c) -- (a);
+  \end{tikzpicture}
+\end{document}
