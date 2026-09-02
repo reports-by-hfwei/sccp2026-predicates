@@ -1,3 +1,99 @@
+% review-wo-predicates.tex
+
+\begin{frame}{Review}
+  \begin{center}
+    {\LARGE
+      What we know about transactional consistency models \\[1em]
+      \accentred{without predicates}}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Review: Intuitive or Operational Specs}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.45\textwidth}
+      \begin{center}
+        \ncite{Notions:CACM1976} \\[1em]
+        \fig{.60}{figs/notions-cacm1976.png}\\[.6em]
+        {\Large\bfseries SER}\\[.35em]
+        \darkblue{serial execution}
+      \end{center}
+    \end{column}
+    \begin{column}{.45\textwidth}
+      \begin{center}
+        \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+        \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
+        \fig{.42}{figs/si-sigmod1995.png}\\[.25em]
+        {\Large\bfseries SI}\quad \accentred{snapshot + write-conflict control}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Review: Axiomatic Specs}
+  \centering\large A shared execution vocabulary: \darkblue{$(\VIS,\AR)$}\vspace{.8em}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.30\textwidth}\centering
+      \fig{1}{figs/framework-concur2015.png}\\[.5em]
+      \small atomic visibility
+    \end{column}
+    \begin{column}{.30\textwidth}\centering
+      \fig{1}{figs/clientcentric-podc2017.png}\\[.5em]
+      \small client-centric views
+    \end{column}
+    \begin{column}{.30\textwidth}\centering
+      \fig{1}{figs/complexity-oopsla2019.png}\\[.5em]
+      \small checking complexity
+    \end{column}
+  \end{columns}\vfill
+  \centering\large Visibility determines observable item versions; arbitration orders writes.
+  \vfill\hfill\ncite{Cerone:CONCUR2015,ClientCentric:PODC2017}
+\end{frame}
+
+\begin{frame}{Review: Extract Dependency Graphs from Histories}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.37\textwidth}\centering
+      \fig{.82}{figs/notions-cacm1976.png}\\[.8em]
+      \fig{.82}{figs/cc-stoc1976.png}
+    \end{column}
+    \begin{column}{.55\textwidth}\centering
+      {\LARGE\bfseries History}\\[.45em]
+      \Large $\Longrightarrow$\quad \darkblue{item dependency graph}\quad $\Longrightarrow$\\[.7em]
+      \large $\WR,\ \WW,\ \RW$ edges encode observed versions and overwrites.
+    \end{column}
+  \end{columns}\vfill\hfill\ncite{Notions:CACM1976,CC:Bernstein1987}
+\end{frame}
+
+\begin{frame}{Review: SER Characterization Theorem}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.34\textwidth}\centering
+      \fig{.87}{figs/notions-cacm1976.png}\\[.6em]
+      \fig{.87}{figs/cc-stoc1976.png}
+    \end{column}
+    \begin{column}{.59\textwidth}\centering
+      \begin{theorem}
+        An item-operation history is serializable iff its dependency graph is
+        internally consistent and acyclic.
+      \end{theorem}
+    \end{column}
+  \end{columns}\vfill\hfill\ncite{CC:Bernstein1987,Adya:PhDThesis1999}
+\end{frame}
+
+\begin{frame}{Review: SI Characterization Theorem}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{.36\textwidth}\centering
+      \fig{.80}{figs/si-sigmod1995.png}
+    \end{column}
+    \begin{column}{.57\textwidth}\centering
+      \begin{theorem}
+        An item-operation history satisfies SI iff its dependency graph is
+        internally consistent and every cycle has two adjacent $\RW$ edges.
+      \end{theorem}
+    \end{column}
+  \end{columns}\vfill
+  \centering\accentred{This exact correspondence is the baseline that predicates must recover.}
+  \vfill\hfill\ncite{AnalysingSI:JACM2018}
+\end{frame}
+
 \begin{frame}{Review}
   \centering\vspace{.6em}
   {\LARGE What we know about transactional consistency models}\\[.35em]
@@ -12,85 +108,4 @@
     \draw[-Latex,very thick,MidnightBlue] (g) -- (a);
   \end{tikzpicture}\vfill
   \large\darkblue{A mature correspondence for named items and item dependencies.}
-\end{frame}
-
-\begin{frame}{Review: Intuitive or Operational Specs}
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{.46\textwidth}\centering
-      \includegraphics[width=.70\linewidth]{figs/notions-cacm1976.png}\\[.6em]
-      {\Large\bfseries SER}\\[.35em]
-      \darkblue{serial execution}
-    \end{column}
-    \begin{column}{.46\textwidth}\centering
-      \includegraphics[width=.63\linewidth]{figs/critique-sigmod1995.png}\\[.35em]
-      \includegraphics[width=.43\linewidth]{figs/si-sigmod1995.png}\\[.25em]
-      {\Large\bfseries SI}\quad \accentred{snapshot + write-conflict control}
-    \end{column}
-  \end{columns}\vfill
-  \hfill\ncite{Notions:CACM1976,CritiqueSQL:SIGMOD1995}
-\end{frame}
-
-\begin{frame}{Review: Axiomatic Specs}
-  \centering\large A shared execution vocabulary: \darkblue{$(\VIS,\AR)$}\vspace{.8em}
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{.30\textwidth}\centering
-      \includegraphics[width=\linewidth,height=25mm,keepaspectratio]{figs/framework-concur2015.png}\\[.5em]
-      \small atomic visibility
-    \end{column}
-    \begin{column}{.30\textwidth}\centering
-      \includegraphics[width=\linewidth,height=25mm,keepaspectratio]{figs/clientcentric-podc2017.png}\\[.5em]
-      \small client-centric views
-    \end{column}
-    \begin{column}{.30\textwidth}\centering
-      \includegraphics[width=\linewidth,height=25mm,keepaspectratio]{figs/complexity-oopsla2019.png}\\[.5em]
-      \small checking complexity
-    \end{column}
-  \end{columns}\vfill
-  \centering\large Visibility determines observable item versions; arbitration orders writes.
-  \vfill\hfill\ncite{Cerone:CONCUR2015,ClientCentric:PODC2017}
-\end{frame}
-
-\begin{frame}{Review: Extract Dependency Graphs from Histories}
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{.37\textwidth}\centering
-      \includegraphics[width=.82\linewidth]{figs/notions-cacm1976.png}\\[.8em]
-      \includegraphics[width=.82\linewidth]{figs/cc-stoc1976.png}
-    \end{column}
-    \begin{column}{.55\textwidth}\centering
-      {\LARGE\bfseries History}\\[.45em]
-      \Large $\Longrightarrow$\quad \darkblue{item dependency graph}\quad $\Longrightarrow$\\[.7em]
-      \large $\WR,\ \WW,\ \RW$ edges encode observed versions and overwrites.
-    \end{column}
-  \end{columns}\vfill\hfill\ncite{Notions:CACM1976,CC:Bernstein1987}
-\end{frame}
-
-\begin{frame}{Review: SER Characterization Theorem}
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{.34\textwidth}\centering
-      \includegraphics[width=.87\linewidth]{figs/notions-cacm1976.png}\\[.6em]
-      \includegraphics[width=.87\linewidth]{figs/cc-stoc1976.png}
-    \end{column}
-    \begin{column}{.59\textwidth}\centering
-      \begin{theorem}
-        An item-operation history is serializable iff its dependency graph is
-        internally consistent and acyclic.
-      \end{theorem}
-    \end{column}
-  \end{columns}\vfill\hfill\ncite{CC:Bernstein1987,Adya:PhDThesis1999}
-\end{frame}
-
-\begin{frame}{Review: SI Characterization Theorem}
-  \begin{columns}[c,onlytextwidth]
-    \begin{column}{.36\textwidth}\centering
-      \includegraphics[width=.80\linewidth]{figs/si-sigmod1995.png}
-    \end{column}
-    \begin{column}{.57\textwidth}\centering
-      \begin{theorem}
-        An item-operation history satisfies SI iff its dependency graph is
-        internally consistent and every cycle has two adjacent $\RW$ edges.
-      \end{theorem}
-    \end{column}
-  \end{columns}\vfill
-  \centering\accentred{This exact correspondence is the baseline that predicates must recover.}
-  \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}
