@@ -1,3 +1,5 @@
+% item-predicate.tex
+
 \begin{frame}{Item Operations vs. Predicate Operations}
   \begin{columns}[c,onlytextwidth]
     \begin{column}{.30\textwidth}\centering
@@ -5,18 +7,18 @@
         \node[op] {\textbf{Read}$(x,v)$\\\small Read$(2,60)$};
         \node[op,below=7mm of current bounding box.south] {\textbf{Write}$(x,v)$\\\small Write$(3,40)$};
       \end{tikzpicture}\\[1.2em]
-      \darkblue{point access}\\[-.1em]\small one value
+      \blue{point access}\\[-.1em]\small one value
     \end{column}
     \begin{column}{.30\textwidth}\centering
       \large\textbf{Employee}\\[.45em]
       \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{cc}\toprule EID & Salary\\\midrule 0 & 80\\ 1 & 100\\ \textcolor{teal}{2} & \textcolor{teal}{60}\\ \textcolor{BrickRed}{3} & \textcolor{BrickRed}{40}\\\bottomrule\end{tabular}
+      \begin{tabular}{cc}\toprule EID & Salary\\\midrule 0 & 80\\ 1 & 100\\ \green{2} & \green{60}\\ \red{3} & \red{40}\\\bottomrule\end{tabular}
     \end{column}
     \begin{column}{.30\textwidth}\centering
       \begin{tikzpicture}[font=\large,op/.style={draw=BrickRed,rounded corners=4pt,fill=BrickRed!8,text width=31mm,minimum height=22mm,align=center}]
         \node[op] {\textbf{PredRead}$(P,M)$\\[.35em]\small $P:\ \mathit{Salary}<80$};
       \end{tikzpicture}\\[1.2em]
-      \accentred{condition-based access}\\[-.1em]\small a set of values
+      \red{condition-based access}\\[-.1em]\small a set of values
     \end{column}
   \end{columns}
   \vfill\centering\large\textbf{One query can observe both matching and non-matching employees.}

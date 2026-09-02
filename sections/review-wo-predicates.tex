@@ -4,7 +4,7 @@
   \begin{center}
     {\LARGE
       What we know about transactional consistency models \\[1em]
-      \accentred{without predicates}}
+      \red{without predicates}}
   \end{center}
 \end{frame}
 
@@ -15,7 +15,7 @@
         \ncite{Notions:CACM1976} \\[1em]
         \fig{.60}{figs/notions-cacm1976.png}\\[.6em]
         {\Large\bfseries SER}\\[.35em]
-        \darkblue{serial execution}
+        \blue{serial execution}
       \end{center}
     \end{column}
     \begin{column}{.45\textwidth}
@@ -23,14 +23,14 @@
         \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
         \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
         \fig{.42}{figs/si-sigmod1995.png}\\[.25em]
-        {\Large\bfseries SI}\quad \accentred{snapshot + write-conflict control}
+        {\Large\bfseries SI}\quad \red{snapshot + write-conflict control}
       \end{center}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Review: Axiomatic Specs}
-  \centering\large A shared execution vocabulary: \darkblue{$(\VIS,\AR)$}\vspace{.8em}
+  \centering\large A shared execution vocabulary: \blue{$(\VIS,\AR)$}\vspace{.8em}
   \begin{columns}[c,onlytextwidth]
     \begin{column}{.30\textwidth}\centering
       \fig{1}{figs/framework-concur2015.png}\\[.5em]
@@ -57,7 +57,7 @@
     \end{column}
     \begin{column}{.55\textwidth}\centering
       {\LARGE\bfseries History}\\[.45em]
-      \Large $\Longrightarrow$\quad \darkblue{item dependency graph}\quad $\Longrightarrow$\\[.7em]
+      \Large $\Longrightarrow$\quad \blue{item dependency graph}\quad $\Longrightarrow$\\[.7em]
       \large $\WR,\ \WW,\ \RW$ edges encode observed versions and overwrites.
     \end{column}
   \end{columns}\vfill\hfill\ncite{Notions:CACM1976,CC:Bernstein1987}
@@ -90,14 +90,14 @@
       \end{theorem}
     \end{column}
   \end{columns}\vfill
-  \centering\accentred{This exact correspondence is the baseline that predicates must recover.}
+  \centering\red{This exact correspondence is the baseline that predicates must recover.}
   \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}
 
 \begin{frame}{Review}
   \centering\vspace{.6em}
   {\LARGE What we know about transactional consistency models}\\[.35em]
-  {\LARGE\accentred{without predicates}}\vfill
+  {\LARGE\red{without predicates}}\vfill
   \begin{tikzpicture}[>=Latex,font=\large,
       box/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,
         text width=35mm,minimum height=15mm,align=center}]
@@ -107,5 +107,5 @@
     \draw[-Latex,very thick,MidnightBlue] (s) -- (g);
     \draw[-Latex,very thick,MidnightBlue] (g) -- (a);
   \end{tikzpicture}\vfill
-  \large\darkblue{A mature correspondence for named items and item dependencies.}
+  \large\blue{A mature correspondence for named items and item dependencies.}
 \end{frame}
