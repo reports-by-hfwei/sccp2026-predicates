@@ -30,18 +30,19 @@
   individual section files.
 - Include a figure as `\fig{<width factor>}{<path>}`.  The width factor is the
   numeric multiplier of the local `\linewidth`, e.g.,
-  `\fig{.70}{figs/example.png}`.
+  `\fig{.70}{figs/example.png}`.  For a standalone TikZ figure, use its PDF
+  directly, e.g., `\fig{.70}{tikz/example.pdf}`.
 - Use semantic color helpers from `newcommands.tex`: `\blue{...}` for primary
   concepts, `\red{...}` for contrasts or open questions, `\green{...}` for
   positive highlights, and `\gray{...}` for secondary text.
 - Place citations with `\ncite{...}` at the lower right of a frame.  Preserve
   existing bibliography keys and never invent a citation.
 - Prefer supplied figures.  If a new diagram is necessary, use TikZ source in
-  `tikz/`, compile it to PDF, copy the PDF to `figs/`, and include it with
-  `\fig`.
+  `tikz/`, compile it to a PDF in the same directory, and include that PDF
+  directly with `\fig`; never copy a generated TikZ PDF to `figs/`.
 - Do not embed TikZ code in `sections/*.tex`.  Each diagram must have a
   separately compilable `standalone` source in `tikz/`; commit its generated
-  PDF in `figs/` and include that PDF with `\fig`.
+  PDF alongside its source in `tikz/` and include that PDF with `\fig`.
 - Format TikZ option lists with spaces around assignments and after commas,
   e.g., `align = center` and `-Latex, very thick`.  Put long styles on separate
   indented lines.
