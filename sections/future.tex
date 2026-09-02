@@ -1,0 +1,63 @@
+% future.tex
+
+\begin{frame}{Future Work: From a Correctness Contract to Analysis Tools}
+  \begin{center}
+    \fig{.96}{tikz/future.pdf}
+  \end{center}
+  \vfill
+  \begin{center}
+    \large Three directions share one prerequisite: preserve the semantic
+    bridge while moving from histories to algorithms and implementations.
+  \end{center}
+\end{frame}
+
+\begin{frame}{1. Predicate-Aware Stateless Model Checking}
+  \begin{columns}[T,onlytextwidth]
+    \column{.49\textwidth}
+      \begin{block}{Theory-guided checker kernel}
+        From normalized predicate histories, construct a common
+        $\PredWR/\WW$ base and use lower/baseline/upper relations for
+        $\ser{}/\si{}$ checks.  A lower persistent cycle can reject; an upper
+        acyclic graph can accept; ambiguous cases are refined or solved.
+      \end{block}
+    \column{.45\textwidth}
+      \begin{alertblock}{Make it scientifically credible}
+        \begin{itemize}\setlength\itemsep{.45em}
+          \item validate against exhaustive bounded $(\VIS,\AR)$ search;
+          \item emit a checkable witness/cycle certificate; and
+          \item measure edge density, $\match$ tests, memory, and solver work.
+        \end{itemize}
+      \end{alertblock}
+  \end{columns}
+  \vfill
+  \gray{The target is a relation-policy laboratory or SMC kernel---not merely
+  another end-to-end black-box checker.}
+  \vfill\hfill\ncite{ComplexityMIL:CAV2025,Vbox:arXiv2025}
+\end{frame}
+
+\begin{frame}{2--3. Program Robustness and Faithful Implementations}
+  \begin{columns}[T,onlytextwidth]
+    \column{.47\textwidth}
+      \begin{block}{2. Predicate-aware robustness analysis}
+        Lift item-only robustness questions from histories to transaction
+        programs: do all $\si{}$ executions of a program remain serializable
+        when predicate reads can create phantoms?  A finite predicate/write
+        abstraction and the graph criterion can drive SMT/CEGAR search for a
+        violating program path.
+      \end{block}
+      \vfill
+      \gray{Success: a sound abstraction theorem and counterexample traces
+      that explain the decisive predicate edge.}
+    \column{.47\textwidth}
+      \begin{block}{3. Certified mapping from DBMS events}
+        Relate recorded predicate/range-conflict events to semantic keys,
+        writer order, coverage, and $\match$.  Prove when a mechanism is a
+        sound lower or upper approximation, rather than labeling physical
+        locks as semantic edges by fiat.
+      \end{block}
+      \vfill
+      \gray{Success: one DBMS adapter with a stated abstraction theorem and
+      certificates validated against captured histories.}
+  \end{columns}
+  \vfill\hfill\ncite{MakingSISER:TODS2005,RobustRA:CONCUR2016,AnalysingSI:JACM2018}
+\end{frame}

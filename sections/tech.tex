@@ -1,0 +1,71 @@
+% tech.tex
+
+\begin{frame}{Technical Insight 1: Make Absence a First-Class Observation}
+  \begin{center}
+    \fig{.72}{tikz/tech.pdf}
+  \end{center}
+  \vfill
+  \begin{block}{External predicate consistency}
+    For each externally observed key $x$, choose the $\AR$-latest writer
+    visible to the reader.  Its value must equal the returned value when $x$
+    appears in the result, and must fail the predicate when $x$ is omitted.
+  \end{block}
+  \vfill\hfill\ncite{Adya:PhDThesis1999,ComplexityMIL:CAV2025}
+\end{frame}
+
+\begin{frame}{Technical Insight 2: Witnesses Turn a Semantic Mismatch into an Edge}
+  \begin{columns}[T,onlytextwidth]
+    \column{.48\textwidth}
+      \begin{block}{Graph witness}
+        $U\rel{\PredWR(x)}T$ states that $U$ supplies the version by which
+        $T$ externally observes $x$.
+      \end{block}
+      \begin{block}{Observation-changing successor}
+        If $U\rel{\WW(x)}S$ and replacing $U$'s value by $S$'s value changes
+        membership or the returned value, then
+        \[
+          T\rel{\PredRW(x)}S.
+        \]
+      \end{block}
+    \column{.46\textwidth}
+      \begin{alertblock}{Proof move}
+        In the graph-to-execution direction, assume the constructed execution
+        violates an external predicate observation.  The graph witness and the
+        execution's latest visible writer then disagree in an observable way,
+        forcing $\PredRW$ and hence a forbidden order/cycle.
+      \end{alertblock}
+      \vspace{.4em}
+      \gray{Predicate analogue of recovering read-from facts from a graph.}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Technical Insight 3: Keep Exactly the Proof-Relevant Edges}
+  \begin{center}
+    \Large
+    $\PredRWarXiv \subseteq \mathcal R \subseteq \PredRWCAV$
+  \end{center}
+  \vspace{.6em}
+  \begin{columns}[T,onlytextwidth]
+    \column{.30\textwidth}
+      \begin{block}{Lower frontier}
+        The earliest later write that changes the observation.  It is enough
+        to expose a predicate-consistency violation.
+      \end{block}
+    \column{.30\textwidth}
+      \begin{block}{Baseline}
+        All observation-changing later writers.  This is the direct
+        ``changes matches'' reading.
+      \end{block}
+    \column{.30\textwidth}
+      \begin{block}{Upper closure}
+        All later writers sharing a $\PredWR/\WW$ witness.  It is safe to
+        orient in a witnessing execution.
+      \end{block}
+  \end{columns}
+  \vfill
+  \begin{center}
+    \large Different fixed graphs; the same existential SER/SI history
+    characterization.  The theorem separates correctness from representation.
+  \end{center}
+  \vfill\hfill\ncite{Adya:PhDThesis1999,Vbox:arXiv2025,ComplexityMIL:CAV2025}
+\end{frame}

@@ -1,1 +1,51 @@
 % contribution.tex
+
+\begin{frame}{Contributions: Build and Exploit the Bridge}
+  \begin{center}
+    \fig{.78}{tikz/contribution.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Four Contributions, One Coherent Story}
+  \begin{enumerate}\setlength\itemsep{.7em}
+    \item \blue{Semantic interface.}  Extend $(\VIS,\AR)$ with item-wise
+      external predicate observations, so both returned and omitted keys have
+      a precise version explanation.
+    \item \blue{Predicate dependency graphs.}  Define $\PredWR$ for the
+      explanatory writer and observation-sensitive $\PredRW$ using the
+      change predicate $\match$.
+    \item \blue{Exact SER/SI characterizations.}  Prove the same
+      execution--graph equivalence style as the item-only results, while
+      resolving the predicate-specific SI witness ambiguity.
+    \item \blue{Proof-theoretic design space.}  Show that every relation
+      between a lower frontier and an upper structural closure preserves the
+      same existential history-level characterization.
+  \end{enumerate}
+  \vfill\hfill\ncite{AnalysingSI:JACM2018,Adya:PhDThesis1999,ComplexityMIL:CAV2025,Vbox:arXiv2025}
+\end{frame}
+
+\begin{frame}{Claim Boundary: Theory First, Engineering Enabled}
+  \begin{columns}[T,onlytextwidth]
+    \column{.46\textwidth}
+      \begin{block}{We establish}
+        \begin{itemize}\setlength\itemsep{.5em}
+          \item a predicate-aware semantic--graph correspondence;
+          \item exact graph criteria for $\ser{}$ and $\si{}$; and
+          \item a sound interval of admissible predicate anti-dependencies.
+        \end{itemize}
+      \end{block}
+    \column{.46\textwidth}
+      \begin{alertblock}{We deliberately do not claim}
+        \begin{itemize}\setlength\itemsep{.5em}
+          \item a new full SQL black-box checker or a cost improvement;
+          \item that every DBMS lock event is literally a graph edge; or
+          \item that the interval relations have identical fixed-graph edges.
+        \end{itemize}
+      \end{alertblock}
+  \end{columns}
+  \vfill
+  \begin{center}
+    \large The contribution is a reusable correctness contract for those
+    downstream tools.
+  \end{center}
+\end{frame}

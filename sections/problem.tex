@@ -1,21 +1,59 @@
 % problem.tex
 
-\begin{frame}{The Problem}
+\begin{frame}{The Missing Bridge}
+  \begin{center}
+    \fig{.96}{tikz/problem.pdf}
+  \end{center}
+  \vfill
+  \begin{block}{The gap}
+    Predicate-aware \blue{specifications} say which executions are legal;
+    predicate \blue{dependency graphs} are useful only when an \emph{exact,
+    two-way characterization} connects them.  That bridge is established for
+    item operations, but was missing for predicate observations.
+  \end{block}
+  \vfill\hfill\ncite{AnalysingSI:JACM2018,ComplexityMIL:CAV2025,Adya:PhDThesis1999,Vbox:arXiv2025}
+\end{frame}
+
+\begin{frame}{Why Predicates Make the Bridge Nontrivial}
   \begin{columns}[c,onlytextwidth]
-    \column{0.60\textwidth}
+    \column{0.56\textwidth}
     \begin{center}
-      \fig{1}{tikz/predicate-observation.pdf}
+      \fig{.92}{tikz/predicate-observation.pdf}
     \end{center}
 
-    \column{0.34\textwidth}
+    \column{0.39\textwidth}
     \large
-    \blue{Item read:} value observed\\[1.1em]
-    \red{Predicate read:} returned and excluded items\\[1.1em]
-    \gray{A phantom changes the result through absence.}
+    \blue{Item read:} records the value of one named key.\\[.7em]
+    \red{Predicate read:} observes a \emph{set}: both returned keys and
+    covered keys that are absent.\\[.7em]
+    A concurrent write can therefore change the result by making an absent
+    key match---the classical phantom.\\[.7em]
+    \gray{A graph edge must carry enough information to explain that absence.}
   \end{columns}
-  \vfill
-  \begin{center}
-    \large\textbf{Can one predicate-aware foundation support both specifications and graphs?}
-  \end{center}
   \vfill\hfill\ncite{CritiqueSQL:SIGMOD1995,Adya:PhDThesis1999}
+\end{frame}
+
+\begin{frame}{What the Missing Bridge Must Deliver}
+  \begin{columns}[T,onlytextwidth]
+    \column{.47\textwidth}
+      \begin{block}{Semantic side}
+        A predicate observation is explained by the latest visible version of
+        every externally observed key, including an omitted key.
+      \end{block}
+      \begin{block}{Graph side}
+        Predicate read- and anti-dependencies must encode the explanatory
+        version and every observation-changing later write.
+      \end{block}
+    \column{.47\textwidth}
+      \begin{alertblock}{Characterization obligation}
+        \centering
+        $\ser{} / \si{}$ execution exists
+        \quad$\Longleftrightarrow$\quad
+        a graph satisfying the corresponding criterion exists.
+      \end{alertblock}
+      \vspace{.6em}
+      \large The reverse implication is the hard one: construct a legal
+      execution \emph{from} a graph without losing predicate semantics.
+  \end{columns}
+  \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}

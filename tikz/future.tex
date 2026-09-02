@@ -1,0 +1,22 @@
+% future.tex -- three mutually reinforcing future directions.
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[dvipsnames]{xcolor}
+\usetikzlibrary{arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[
+  >=Latex,font=\sffamily,
+  core/.style={draw=MidnightBlue,rounded corners=5pt,fill=MidnightBlue!8,
+    align=center,minimum width=3.8cm,minimum height=1.2cm,inner sep=4pt},
+  dir/.style={draw=teal!70!black,rounded corners=5pt,fill=teal!8,
+    align=center,minimum width=3.45cm,minimum height=1.65cm,inner sep=4pt}]
+  \node[core] (core) {\textbf{Predicate-aware graph theory}\\[-1pt]\scriptsize exact semantics, theorems, and relation interval};
+  \node[dir,below left=1.25cm and 2.0cm of core] (smc) {\textbf{1. SMC/checker kernel}\\[-1pt]\scriptsize refinement, certificates,\\bounded semantic oracle};
+  \node[dir,below=1.25cm of core] (rob) {\textbf{2. Program robustness}\\[-1pt]\scriptsize SMT/CEGAR search for\\predicate-induced anomalies};
+  \node[dir,below right=1.25cm and 2.0cm of core] (db) {\textbf{3. DBMS abstraction}\\[-1pt]\scriptsize certified mapping from\\physical events to semantic edges};
+  \draw[-Latex,very thick,MidnightBlue] (core) -- (smc);
+  \draw[-Latex,very thick,MidnightBlue] (core) -- (rob);
+  \draw[-Latex,very thick,MidnightBlue] (core) -- (db);
+  \draw[<->,dashed,thick,black!55] (smc) -- (rob);
+  \draw[<->,dashed,thick,black!55] (rob) -- (db);
+\end{tikzpicture}
+\end{document}
