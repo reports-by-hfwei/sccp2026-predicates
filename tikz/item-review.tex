@@ -15,11 +15,11 @@
         inner sep = 2mm,
       },
     ]
-    \node[ellipse, draw = MidnightBlue,
-      fill = MidnightBlue!5, minimum height = 1cm] (c)
+    \node[ellipse, draw = BrickRed,
+      fill = BrickRed!5, minimum height = 1.2cm] (c)
       {Characterizations};
-    \node[box, below left = 1.0cm and 0.0cm of c] (s) {Specs};
-    \node[box, below right = 1.0cm and 0.0cm of c] (g) {Depgraphs};
+    \node[box, below left = 1.5cm and -0.5cm of c] (s) {Specs};
+    \node[box, below right = 1.5cm and -0.5cm of c] (g) {Depgraphs};
     \node[box, right = 1.5cm of c] (a) {Downstream\\Analysis};
     \draw[-Latex, very thick, MidnightBlue] (c) -- (s);
     \draw[-Latex, very thick, MidnightBlue] (c) -- (g);
