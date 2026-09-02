@@ -301,3 +301,6 @@ ai/preview/
 *-SAVE-ERROR
 
 tmp/
+
+## Python bytecode cache
+__pycache__/
