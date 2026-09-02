@@ -1,156 +1,148 @@
 % review-predicates.tex
 
-\begin{frame}{Review: Downstream Tasks}
-  \begin{center}
-    \renewcommand{\arraystretch}{1.45}
-    \begin{tabular}{@{}p{.30\textwidth}p{.57\textwidth}@{}}
-      \toprule
-      \textbf{Task} & \textbf{Representative work} \\
-      \midrule
-      Black-box checking & Elle, COBRA, PolySI, VeriStrong \\
-      CC protocol verification & execution-based verification \\
-      Robustness & robustness against weaker consistency \\
-      \bottomrule
-    \end{tabular}
-  \end{center}
-  \vfill
-  \begin{center}
-    \large\red{All depend on a faithful link between observed histories and consistency.}
-  \end{center}
-  \vfill\hfill\ncite{Elle:VLDB2020,Cobra:OSDI2020,PolySI:VLDB2023,VeriStrong:VLDB2026,RobustRA:CONCUR2016}
-\end{frame}
-
 \begin{frame}{Review}
   \begin{center}
-    \vspace{.6em}
-    {\LARGE What we know about transactional consistency models}\\[.35em]
+    {\LARGE What we know about transactional consistency models}\\[1em]
     {\LARGE\red{with predicates}}
-  \end{center}
-  \vfill
-  \begin{center}
-    \fig{.80}{tikz/predicate-consistency-review.pdf}
-  \end{center}
-  \vfill
-  \begin{center}
-    \large\blue{The question now includes which items a query did not return.}
   \end{center}
 \end{frame}
 
 \begin{frame}{Review: Intuitive or Operational Specs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.46\textwidth}
+    \column{0.45\textwidth}
     \begin{center}
-      \fig{.70}{figs/notions-cacm1976.png}\\[.6em]
-      {\Large\bfseries SER}\\[.35em]\blue{serial execution}
+      \ncite{Notions:CACM1976} \\[1em]
+      \fig{.60}{figs/notions-cacm1976.png}\\[.6em]
+      {\Large\bfseries SER}\\[.35em]
+      \blue{serial execution}
     \end{center}
 
-    \column{0.46\textwidth}
+    \column{0.45\textwidth}
     \begin{center}
-      \fig{.60}{figs/critique-sigmod1995.png}\\[.25em]
-      \fig{.40}{figs/si-sigmod1995.png}\\[.15em]
+      \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+      \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
+      \fig{.42}{figs/si-sigmod1995.png}\\[.25em]
       {\Large\bfseries SI}\quad \red{snapshot + write-conflict control}
     \end{center}
   \end{columns}
-  \vfill
   \begin{center}
-    \large Predicate semantics is not supplied by these item-level specifications.
+    \large Still applicable
   \end{center}
-  \vfill\hfill\ncite{Notions:CACM1976,CritiqueSQL:SIGMOD1995}
 \end{frame}
 
 \begin{frame}{Review: Axiomatic Specs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.44\textwidth}
-    \begin{center}
-      \fig{.93}{figs/complexity-cav2025.png}\\[.7em]
-      \blue{checking-oriented consistency conditions}
-    \end{center}
-
-    \column{0.44\textwidth}
-    \begin{center}
-      \fig{.93}{figs/specs-cav2025.png}\\[.7em]
-      \blue{axiomatic specification grammar}
-    \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \ncite{ComplexityMIL:CAV2025} \\[1em]
+        \fig{0.90}{figs/complexity-cav2025.png}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{0.90}{figs/specs-cav2025.png}
+      \end{center}
   \end{columns}
   \vfill
   \begin{center}
-    \large\red{The challenge: make the specification explain matching and omitted items.}
+    \large\red{checking-oriented consistency axioms}
   \end{center}
-  \vfill\hfill\ncite{ComplexityMIL:CAV2025}
 \end{frame}
 
 \begin{frame}{Review: Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.42\textwidth}
+    \column{0.45\textwidth}
     \begin{center}
-      \fig{.84}{figs/adya-phdthesis1999.png}
+      \ncite{Adya:PhDThesis1999} \\[1em]
+      \fig{.90}{figs/adya-phdthesis1999.png}
     \end{center}
-
-    \column{0.51\textwidth}
+    \column{0.45\textwidth}
     \begin{center}
       \fig{.85}{tikz/predicate-dependency-example.pdf}\\[.7em]
       \small A predicate read depends on a witness and on later result-changing writers.
     \end{center}
   \end{columns}
-  \vfill\hfill\ncite{Adya:PhDThesis1999}
 \end{frame}
 
 \begin{frame}{Review: Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.29\textwidth}
+    \column{0.33\textwidth}
     \begin{center}
-      \fig{.92}{figs/adya-icde2000.png}\\[.5em]
+      \ncite{Adya:ICDE2000} \\[1em]
+      \fig{.95}{figs/adya-icde2000.png}\\[.5em]
       \small generalized isolation
     \end{center}
-
-    \column{0.29\textwidth}
+    \column{0.33\textwidth}
     \begin{center}
-      \fig{.92}{figs/vbox-arxiv2025.png}\\[.5em]
+      \ncite{Vbox:arXiv2025} \\[1em]
+      \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
       \small earliest result change
     \end{center}
-
-    \column{0.29\textwidth}
+    \column{0.33\textwidth}
     \begin{center}
-      \fig{.92}{figs/complexity-cav2025.png}\\[.5em]
+      \ncite{ComplexityMIL:CAV2025} \\[1em]
+      \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
       \small all later writers
     \end{center}
   \end{columns}
   \vfill
   \begin{center}
-    \Large $\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$\\[.5em]
-    \large\red{Predicate-read and predicate-anti-dependency definitions differ.}
+    \large\red{Predicate-read dependency definitions differ.}
   \end{center}
-  \vfill\hfill\ncite{Adya:ICDE2000,Vbox:arXiv2025,ComplexityMIL:CAV2025}
+\end{frame}
+
+\begin{frame}{Review: Dependency Graphs}
+  \begin{columns}[c,onlytextwidth]
+    \column{0.33\textwidth}
+      \begin{center}
+        \ncite{Vbox:arXiv2025} \\[1em]
+        \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
+        \small earliest result change
+      \end{center}
+    \column{0.33\textwidth}
+      \begin{center}
+        \ncite{Adya:ICDE2000} \\[1em]
+        \fig{.95}{figs/adya-icde2000.png}\\[.5em]
+        \small generalized isolation
+      \end{center}
+    \column{0.33\textwidth}
+      \begin{center}
+        \ncite{ComplexityMIL:CAV2025} \\[1em]
+        \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
+        \small all later writers
+      \end{center}
+  \end{columns}
+  \vfill
+  \begin{center}
+    \Large $\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$\\[.5em]
+    \large\red{predicate-anti-dependency definitions differ.}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Review: SER Characterization}
   \begin{columns}[c,onlytextwidth]
-    \column{0.38\textwidth}
-    \begin{center}
-      \fig{.90}{figs/proof-phdthesis1999.png}
-    \end{center}
-
-    \column{0.54\textwidth}
-    \begin{center}
-      \large Item-level serializability has a well-established graph proof.\\[.9em]
-      \red{Predicate extensions use different edges, but lack a single rigorous semantic proof bridge.}
-    \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \red{Predicate extensions use different edges, but lack a single rigorous semantic proof bridge.}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \fig{1.00}{figs/proof-phdthesis1999.png}
+      \end{center}
   \end{columns}
   \vfill\hfill\ncite{CC:Bernstein1987,TP:Gray1993,Adya:PhDThesis1999,Adya:ICDE2000,MakingSISER:TODS2005,Emme:EuroSys2024,Emme:TOCS2026,Vbox:arXiv2025}
 \end{frame}
 
 \begin{frame}{Review: SI Characterization}
+  \begin{center}
+    \fig{.90}{figs/adya-phdthesis1999.png}
+  \end{center}
   \begin{columns}[c,onlytextwidth]
-    \column{0.39\textwidth}
-    \begin{center}
-      \fig{.88}{figs/adya-phdthesis1999.png}
-    \end{center}
-
-    \column{0.54\textwidth}
-    \begin{center}
-      \large Item-level SI requires two adjacent anti-dependencies in every cycle.\\[.9em]
-      \red{Which predicate edges preserve this exact characterization?}
+    \column{0.50\textwidth}
+    \column{0.50\textwidth}
+      \begin{center}
+        \large Low level info: 
+        \red{Which predicate edges preserve this exact characterization?}
     \end{center}
   \end{columns}
-  \vfill\hfill\ncite{Adya:PhDThesis1999,AnalysingSI:JACM2018}
+  \vfill\hfill\ncite{Adya:PhDThesis1999}
 \end{frame}

@@ -299,3 +299,5 @@ build/
 ## Local rendering artifacts used for visual QA
 ai/preview/
 *-SAVE-ERROR
+
+tmp/

@@ -142,3 +142,6 @@ fig for adya-phdthesis1999
 
 `problem.tex`
 # The Problem
+
+`contribution.tex`
+# Contributions
