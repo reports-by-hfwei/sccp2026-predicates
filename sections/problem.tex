@@ -1,14 +1,21 @@
+% problem.tex
+
 \begin{frame}{The Problem}
   \begin{columns}[c,onlytextwidth]
-    \begin{column}{.60\textwidth}\centering
+    \column{0.60\textwidth}
+    \begin{center}
       \fig{1}{figs/predicate-observation.pdf}
-    \end{column}
-    \begin{column}{.34\textwidth}\large
-      \blue{Item read:} value observed\\[1.1em]
-      \red{Predicate read:} returned and excluded items\\[1.1em]
-      \gray{A phantom changes the result through absence.}
-    \end{column}
-  \end{columns}\vfill
-  \centering\large\textbf{Can one predicate-aware foundation support both specifications and graphs?}
+    \end{center}
+
+    \column{0.34\textwidth}
+    \large
+    \blue{Item read:} value observed\\[1.1em]
+    \red{Predicate read:} returned and excluded items\\[1.1em]
+    \gray{A phantom changes the result through absence.}
+  \end{columns}
+  \vfill
+  \begin{center}
+    \large\textbf{Can one predicate-aware foundation support both specifications and graphs?}
+  \end{center}
   \vfill\hfill\ncite{CritiqueSQL:SIGMOD1995,Adya:PhDThesis1999}
 \end{frame}

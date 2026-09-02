@@ -2,24 +2,47 @@
 
 \begin{frame}{Item Operations vs. Predicate Operations}
   \begin{columns}[c,onlytextwidth]
-    \begin{column}{.30\textwidth}\centering
-      \begin{tikzpicture}[font=\large,op/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,text width=31mm,minimum height=13mm,align=center}]
+    \column{0.30\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[font=\large,
+          op/.style={draw=MidnightBlue,rounded corners=4pt,fill=MidnightBlue!5,
+            text width=31mm,minimum height=13mm,align=center}]
         \node[op] {\textbf{Read}$(x,v)$\\\small Read$(2,60)$};
-        \node[op,below=7mm of current bounding box.south] {\textbf{Write}$(x,v)$\\\small Write$(3,40)$};
+        \node[op,below=7mm of current bounding box.south]
+          {\textbf{Write}$(x,v)$\\\small Write$(3,40)$};
       \end{tikzpicture}\\[1.2em]
       \blue{point access}\\[-.1em]\small one value
-    \end{column}
-    \begin{column}{.30\textwidth}\centering
+    \end{center}
+
+    \column{0.30\textwidth}
+    \begin{center}
       \large\textbf{Employee}\\[.45em]
       \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{cc}\toprule EID & Salary\\\midrule 0 & 80\\ 1 & 100\\ \green{2} & \green{60}\\ \red{3} & \red{40}\\\bottomrule\end{tabular}
-    \end{column}
-    \begin{column}{.30\textwidth}\centering
-      \begin{tikzpicture}[font=\large,op/.style={draw=BrickRed,rounded corners=4pt,fill=BrickRed!8,text width=31mm,minimum height=22mm,align=center}]
-        \node[op] {\textbf{PredRead}$(P,M)$\\[.35em]\small $P:\ \mathit{Salary}<80$};
+      \begin{tabular}{cc}
+        \toprule
+        EID & Salary \\
+        \midrule
+        0 & 80 \\
+        1 & 100 \\
+        \green{2} & \green{60} \\
+        \red{3} & \red{40} \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+
+    \column{0.30\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[font=\large,
+          op/.style={draw=BrickRed,rounded corners=4pt,fill=BrickRed!8,
+            text width=31mm,minimum height=22mm,align=center}]
+        \node[op] {\textbf{PredRead}$(P,M)$\\[.35em]
+          \small $P:\ \mathit{Salary}<80$};
       \end{tikzpicture}\\[1.2em]
       \red{condition-based access}\\[-.1em]\small a set of values
-    \end{column}
+    \end{center}
   \end{columns}
-  \vfill\centering\large\textbf{One query can observe both matching and non-matching employees.}
+  \vfill
+  \begin{center}
+    \large\textbf{One query can observe both matching and non-matching employees.}
+  \end{center}
 \end{frame}
