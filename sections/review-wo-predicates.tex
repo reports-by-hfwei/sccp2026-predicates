@@ -13,20 +13,20 @@
     \column{0.45\textwidth}
       \begin{center}
         \ncite{Notions:CACM1976} \\[1em]
-        \fig{.60}{figs/notions-cacm1976.png}\\[0.6em]
+        \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
         \blue{\Large\bfseries SER}\\[.1em]
         {serial execution}
       \end{center}
     \column{0.45\textwidth}
       \begin{center}
         \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
-        \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
-        \fig{.42}{figs/si-sigmod1995.png}\\[0.6em]
+        \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
         \blue{\Large\bfseries SI}\\[.1em]
         {snapshot + write-conflict control}
       \end{center}
   \end{columns}
 \end{frame}
+        % \fig{.42}{figs/si-sigmod1995.png}\\[0.6em]
 
 \begin{frame}{Review: Axiomatic Specs}
   \begin{center}
@@ -53,18 +53,14 @@
 
 \begin{frame}{Review: Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.40\textwidth}
+    \column{0.50\textwidth}
       \begin{center}
-        \ncite{Notions:CACM1976} \\[.5em]
-        \fig{.40}{figs/notions-cacm1976.png}\\[.35em]
-        \ncite{CC:STOC1976} \\[.5em]
-        \fig{.70}{figs/cc-stoc1976.png}\\[.35em]
         \ncite{Adya:PhDThesis1999} \\[.5em]
-        \fig{.70}{figs/adya-phdthesis1999.png}
+        \fig{.90}{figs/adya-phdthesis1999.png}
       \end{center}
     \column{0.55\textwidth}
     \begin{center}
-        \fig{0.68}{tikz/depgraph-item.pdf}
+      \fig{0.70}{tikz/depgraph-item.pdf}
     \end{center}
   \end{columns}
 \end{frame}
@@ -73,16 +69,16 @@
   \begin{columns}[c,onlytextwidth]
     \column{0.40\textwidth}
       \begin{center}
-        \ncite{CC:STOC1976} \\[.5em]
-        \fig{.70}{figs/cc-stoc1976.png}
         \ncite{Adya:PhDThesis1999} \\[.5em]
-        \fig{.70}{figs/adya-phdthesis1999.png}
+        \fig{.85}{figs/adya-phdthesis1999.png} \\[1em]
+        \ncite{CC:Bernstein1987} \\[.5em]
+        \fig{.70}{figs/cc-bernstein1987.png}
       \end{center}
-    \column{0.60\textwidth}
+    \column{0.55\textwidth}
     \begin{center}
-      \begin{theorem}
-        An item-operation history is serializable iff its dependency graph is
-        internally consistent and acyclic.
+      \begin{theorem}[roughly stated]
+        An item-operation history is serializable iff\\
+        its dependency graph is acyclic.
       \end{theorem}
     \end{center}
   \end{columns}
@@ -90,44 +86,26 @@
 
 \begin{frame}{Review: SI Characterization Theorem}
   \begin{columns}[c,onlytextwidth]
-    \column{0.36\textwidth}
-    \begin{center}
-      \fig{.80}{figs/si-sigmod1995.png}
-    \end{center}
-
-    \column{0.57\textwidth}
-    \begin{center}
-      \begin{theorem}
-        An item-operation history satisfies SI iff its dependency graph is
-        internally consistent and every cycle has two adjacent $\RW$ edges.
-      \end{theorem}
-    \end{center}
+    \column{0.40\textwidth}
+      \begin{center}
+        \ncite{AnalysingSI:JACM2018} \\[1em]
+        \fig{.85}{figs/analysingsi-jacm2018.png}
+      \end{center}
+    \column{0.55\textwidth}
+      \begin{center}
+        \begin{theorem}[roughly stated]
+          An item-operation history satisfies SI iff \\
+          every cycle of its dependency graph \\
+          has at least two adjacent $\RW$ edges.
+        \end{theorem}
+      \end{center}
   \end{columns}
-  \vfill
-  \begin{center}
-    \red{This exact correspondence is the baseline that predicates must recover.}
-  \end{center}
-  \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}
 
-\begin{frame}{Review: Downstream Tasks}
+\begin{frame}{Review: Downstream Analysis Tasks}
   \begin{center}
-    \renewcommand{\arraystretch}{1.45}
-    \begin{tabular}{@{}p{.30\textwidth}p{.57\textwidth}@{}}
-      \toprule
-      \textbf{Task} & \textbf{Representative work} \\
-      \midrule
-      Black-box checking & Elle, COBRA, PolySI, VeriStrong \\
-      CC protocol verification & execution-based verification \\
-      Robustness & robustness against weaker consistency \\
-      \bottomrule
-    \end{tabular}
+    \input{tables/review-wo-downstream-analysis-tasks}
   \end{center}
-  \vfill
-  \begin{center}
-    \large\red{All depend on a faithful link between observed histories and consistency.}
-  \end{center}
-  \vfill\hfill\ncite{Elle:VLDB2020,Cobra:OSDI2020,PolySI:VLDB2023,VeriStrong:VLDB2026,RobustRA:CONCUR2016}
 \end{frame}
 
 \begin{frame}{Review (Summary)}
