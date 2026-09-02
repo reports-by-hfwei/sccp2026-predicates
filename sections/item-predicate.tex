@@ -3,35 +3,31 @@
 \begin{frame}{Item Operations vs. Predicate Operations}
   \begin{columns}[c,onlytextwidth]
     \column{0.30\textwidth}
-    \begin{center}
-      \fig{.78}{tikz/item-operations.pdf}\\[1.2em]
-      \blue{point access}\\[-.1em]\small one value
-    \end{center}
-
+      \begin{center}
+        \fig{.75}{tikz/item-operations.pdf}\\[1.0em]
+        \blue{point access}\\[0.2em]
+        {returns one value}
+      \end{center}
     \column{0.30\textwidth}
+      \begin{center}
+        \large\textbf{Employee}\\[.45em]
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{cc}
+          \toprule
+          EID & Salary \\
+          \midrule
+          0 & 80 \\
+          1 & 100 \\
+          {2} & {60} \\
+          {3} & {40} \\
+          \bottomrule
+        \end{tabular}
+      \end{center}
+    \column{0.40\textwidth}
     \begin{center}
-      \large\textbf{Employee}\\[.45em]
-      \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{cc}
-        \toprule
-        EID & Salary \\
-        \midrule
-        0 & 80 \\
-        1 & 100 \\
-        \green{2} & \green{60} \\
-        \red{3} & \red{40} \\
-        \bottomrule
-      \end{tabular}
-    \end{center}
-
-    \column{0.30\textwidth}
-    \begin{center}
-      \fig{.78}{tikz/predicate-read.pdf}\\[1.2em]
-      \red{condition-based access}\\[-.1em]\small a set of values
+      \fig{.70}{tikz/predicate-read.pdf}\\[1.0em]
+      \red{condition-based access}\\[0.2em]
+      {returns a set $M$ of {\bf matched} values}
     \end{center}
   \end{columns}
-  \vfill
-  \begin{center}
-    \large\textbf{One query can observe both matching and non-matching employees.}
-  \end{center}
 \end{frame}

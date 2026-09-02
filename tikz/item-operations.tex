@@ -1,3 +1,5 @@
+% item-operations.tex
+
 \documentclass[tikz, border=2pt]{standalone}
 
 \usepackage[dvipsnames]{xcolor}
@@ -8,15 +10,14 @@
       font = \large,
       op/.style={
         draw = MidnightBlue,
-        rounded corners = 4pt,
+        rounded corners = 5pt,
         fill = MidnightBlue!5,
         text width = 31mm,
-        minimum height = 13mm,
+        minimum height = 12mm,
         align = center,
       },
     ]
-    \node[op] {\textbf{Read}$(x,v)$\\\small Read$(2,60)$};
-    \node[op, below = 7mm of current bounding box.south]
-      {\textbf{Write}$(x,v)$\\\small Write$(3,40)$};
+    \node[op] (r) {\textbf{Read}$(x,v)$};
+    \node[op, below = 1cm of r] (w) {\textbf{Write}$(x,v)$};
   \end{tikzpicture}
 \end{document}

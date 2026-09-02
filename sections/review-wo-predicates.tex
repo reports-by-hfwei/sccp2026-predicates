@@ -11,70 +11,61 @@
 \begin{frame}{Review: Intuitive or Operational Specs}
   \begin{columns}[c,onlytextwidth]
     \column{0.45\textwidth}
-    \begin{center}
-      \ncite{Notions:CACM1976} \\[1em]
-      \fig{.60}{figs/notions-cacm1976.png}\\[.6em]
-      {\Large\bfseries SER}\\[.35em]
-      \blue{serial execution}
-    \end{center}
-
+      \begin{center}
+        \ncite{Notions:CACM1976} \\[1em]
+        \fig{.60}{figs/notions-cacm1976.png}\\[0.6em]
+        \blue{\Large\bfseries SER}\\[.1em]
+        {serial execution}
+      \end{center}
     \column{0.45\textwidth}
-    \begin{center}
-      \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
-      \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
-      \fig{.42}{figs/si-sigmod1995.png}\\[.25em]
-      {\Large\bfseries SI}\quad \red{snapshot + write-conflict control}
-    \end{center}
+      \begin{center}
+        \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+        \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
+        \fig{.42}{figs/si-sigmod1995.png}\\[0.6em]
+        \blue{\Large\bfseries SI}\\[.1em]
+        {snapshot + write-conflict control}
+      \end{center}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Review: Axiomatic Specs}
   \begin{center}
-    \large A shared execution vocabulary: \blue{$(\VIS,\AR)$}
+    \ncite{Cerone:CONCUR2015} \\[1em]
+    \fig{0.45}{figs/framework-concur2015.png}\\[.5em]
+    \blue{$(\VIS, \AR)$}
   \end{center}
-  \vspace{.8em}
+
   \begin{columns}[c,onlytextwidth]
-    \column{0.30\textwidth}
-    \begin{center}
-      \fig{1}{figs/framework-concur2015.png}\\[.5em]
-      \small atomic visibility
-    \end{center}
-
-    \column{0.30\textwidth}
-    \begin{center}
-      \fig{1}{figs/clientcentric-podc2017.png}\\[.5em]
-      \small client-centric views
-    \end{center}
-
-    \column{0.30\textwidth}
-    \begin{center}
-      \fig{1}{figs/complexity-oopsla2019.png}\\[.5em]
-      \small checking complexity
-    \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \ncite{ClientCentric:PODC2017} \\[1em]
+        \fig{0.90}{figs/clientcentric-podc2017.png}\\[.5em]
+        \blue{Client-Centric Views}
+      \end{center}
+    \column{0.50\textwidth}
+      \begin{center}
+        \ncite{Complexity:OOPSLA2019} \\[1em]
+        \fig{0.90}{figs/complexity-oopsla2019.png}\\[.5em]
+        \blue{Checking Complexity}
+      \end{center}
   \end{columns}
-  \vfill
-  \begin{center}
-    \large Visibility determines observable item versions; arbitration orders writes.
-  \end{center}
-  \vfill\hfill\ncite{Cerone:CONCUR2015,ClientCentric:PODC2017}
 \end{frame}
 
-\begin{frame}{Review: Extract Dependency Graphs from Histories}
+\begin{frame}{Review: Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
-    \column{0.37\textwidth}
-    \begin{center}
-      \fig{.82}{figs/notions-cacm1976.png}\\[.8em]
-      \fig{.82}{figs/cc-stoc1976.png}
-    \end{center}
-
+    \column{0.40\textwidth}
+      \begin{center}
+        \ncite{Notions:CACM1976} \\[.5em]
+        \fig{.40}{figs/notions-cacm1976.png}\\[1em]
+        \ncite{CC:STOC1976} \\[.5em]
+        \fig{.70}{figs/cc-stoc1976.png}\\[1em]
+        \ncite{Adya:PhDThesis1999} \\[.5em]
+        \fig{.70}{figs/adya-phdthesis1999.png}
+      \end{center}
     \column{0.55\textwidth}
     \begin{center}
-      {\LARGE\bfseries History}\\[.45em]
-      \Large $\Longrightarrow$\quad \blue{item dependency graph}\quad $\Longrightarrow$\\[.7em]
-      \large $\WR,\ \WW,\ \RW$ edges encode observed versions and overwrites.
     \end{center}
   \end{columns}
-  \vfill\hfill\ncite{Notions:CACM1976,CC:Bernstein1987}
 \end{frame}
 
 \begin{frame}{Review: SER Characterization Theorem}
