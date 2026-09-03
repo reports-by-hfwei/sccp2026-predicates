@@ -1,0 +1,80 @@
+\documentclass[tikz, border=3pt]{standalone}
+
+\usepackage[dvipsnames]{xcolor}
+\usetikzlibrary{arrows.meta}
+\input{../newcommands}
+
+% Standalone figures do not run the presentation bibliography pipeline.  These
+% local labels let \ncite render the corresponding author--year citations.
+\makeatletter
+\newcommand{\declarecite}[2]{\expandafter\gdef\csname b@#1\endcsname{#2}}
+\makeatother
+\declarecite{CC:Bernstein1987}{Bernstein et al., 1987}
+\declarecite{TP:Gray1993}{Gray and Reuter, 1993}
+\declarecite{Adya:PhDThesis1999}{Adya, 1999}
+\declarecite{Adya:ICDE2000}{Adya et al., 2000}
+\declarecite{MakingSISER:TODS2005}{Fekete et al., 2005}
+\declarecite{Emme:EuroSys2024}{Emmi et al., 2024}
+\declarecite{Vbox:arXiv2025}{Zhou et al., 2025}
+\declarecite{Emme:TOCS2026}{Emmi et al., 2026}
+
+\begin{document}
+  \begin{tikzpicture}[
+      cite edge/.style={-Latex, very thick, MidnightBlue},
+      citation/.style={
+        draw = MidnightBlue,
+        rounded corners = 3pt,
+        fill = MidnightBlue!5,
+        minimum width = 31mm,
+        minimum height = 12mm,
+        align = center,
+        inner sep = 2mm,
+      },
+      foundation/.style={citation, fill = black!4},
+      bridge/.style={citation, draw = teal!70!black, fill = teal!8},
+      recent/.style={citation, fill = MidnightBlue!8},
+      theorem/.style={
+        draw = BrickRed,
+        rounded corners = 4pt,
+        fill = BrickRed!6,
+        minimum width = 77mm,
+        minimum height = 13mm,
+        align = center,
+      },
+    ]
+    \node[foundation] (cc) at (0, 0)
+      {\footnotesize\textsc{Book}\\[-.2em]\ncite{CC:Bernstein1987}};
+    \node[foundation] (gray) at (40mm, 0)
+      {\footnotesize\textsc{Book}\\[-.2em]\ncite{TP:Gray1993}};
+
+    \node[bridge] (thesis) at (20mm, 25mm)
+      {\footnotesize\textsc{Thesis}\\[-.2em]\ncite{Adya:PhDThesis1999}};
+    \node[bridge] (icde) at (88mm, 25mm)
+      {\footnotesize\textsc{Conference}\\[-.2em]\ncite{Adya:ICDE2000}};
+
+    \node[recent] (making) at (45mm, 53mm)
+      {\footnotesize\textsc{Journal}\\[-.2em]\ncite{MakingSISER:TODS2005}};
+    \node[recent] (emme) at (80mm, 53mm)
+      {\footnotesize\textsc{Conference}\\[-.2em]\ncite{Emme:EuroSys2024}};
+    \node[recent] (vbox) at (115mm, 53mm)
+      {\footnotesize\textsc{Preprint}\\[-.2em]\ncite{Vbox:arXiv2025}};
+    \node[recent] (order) at (150mm, 53mm)
+      {\footnotesize\textsc{Journal}\\[-.2em]\ncite{Emme:TOCS2026}};
+
+    \node[theorem] (ser) at (98mm, 78mm)
+      {\textbf{The $\mathsf{SER}$ Theorem}\\[-.2em]
+       \scriptsize $\mathcal{H}\models\mathsf{SER}\ \Longleftrightarrow\
+       \mathsf{DepGraph}(\mathcal{H})\ \mathsf{is\ acyclic}$};
+    \node[font = \scriptsize, text = black!60] at (151mm, 25mm)
+      {$\longrightarrow$\;cites};
+
+    % Each arrow points from the citing work to the cited work.
+    \draw[cite edge] (thesis.south west) -- (cc.north east);
+    \draw[cite edge] (thesis.south east) -- (gray.north west);
+    \draw[cite edge] (icde.south west) to[out = 225, in = 25] (cc.east);
+    \draw[cite edge] (making.south) -- (icde.north west);
+    \draw[cite edge] (emme.south) -- (icde.north);
+    \draw[cite edge] (vbox.south) -- (icde.north east);
+    \draw[cite edge] (order.south west) to[out = 235, in = 40] (icde.east);
+  \end{tikzpicture}
+\end{document}
