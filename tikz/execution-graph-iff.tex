@@ -17,32 +17,35 @@
 \newcommand{\RW}{\mathsf{RW}}
 \newcommand{\PredWR}{\mathsf{PredWR}}
 \newcommand{\PredRW}{\mathsf{PredRW}}
+\newcommand{\ser}{\mathsf{SER}}
+\newcommand{\si}{\mathsf{SI}}
 
 \begin{document}
 \begin{tikzpicture}[
   font=\sffamily,
   >=Latex,
-  node distance=26mm and 27mm,
+  node distance=17mm and 18mm,
   witness/.style={rounded corners=5pt, thick, align=center, inner sep=6pt},
   history/.style={witness, draw=Navy, fill=Navy!7, minimum width=43mm},
-  execution/.style={witness, draw=Teal!85!black, fill=Teal!9, minimum width=59mm},
-  graph/.style={witness, draw=Accent, fill=Accent!8, text width=63mm},
+  execution/.style={witness, draw=Teal!85!black, fill=Teal!9, minimum width=54mm},
+  graph/.style={witness, draw=Accent, fill=Accent!8, text width=54mm},
   construction/.style={-Latex, very thick, Navy}
 ]
-  \node[history] (h) {\textbf{History}\\[-1pt]$\Histo$};
+  \node[history] (h) {\textbf{History $\Histo$}};
   \node[execution, below left=of h] (a)
     {\textbf{Execution}\\[-1pt]
-     $\Exec=(\Histo,\VIS,\AR)$};
+     $\Exec=(\Histo,\VIS,\AR)\models\ser/\si$};
   \node[graph, below right=of h] (g)
-    {\textbf{Dependency graph}\\[-1pt]
-     $\Graph=(\Histo,\SO,\WR,\WW,\RW,$\\[-1pt]
-     $\phantom{\Graph=(}\PredWR,\PredRW)$};
+    {\textbf{Depgraph $\Graph_{\Histo}$}\\[-1pt]
+     is acyclic in a certain way};
 
-  \draw[construction] (h.south west) -- (a.north);
-  \draw[construction] (h.south east) -- (g.north);
+  \draw[construction] (h.south west) --
+    node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (a.north);
+  \draw[construction] (h.south east) --
+    node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (g.north);
   \draw[construction, bend left=17] (a.east) to
     node[above, font=\bfseries\small, fill=white, inner sep=1.5pt] {``only if''} (g.west);
   \draw[construction, bend left=17] (g.west) to
-    node[below, font=\bfseries\small, fill=white, inner sep=1.5pt] {``if''} (a.east);
+    node[below, font=\bfseries\small, fill=white, inner sep=1.5pt] {``if'': by construction} (a.east);
 \end{tikzpicture}
 \end{document}
