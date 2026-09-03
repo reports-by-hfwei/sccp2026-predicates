@@ -10,24 +10,20 @@
 \begin{frame}{Review: Intuitive or Operational Specs}
   \begin{columns}[c,onlytextwidth]
     \column{0.45\textwidth}
-    \begin{center}
-      \ncite{Notions:CACM1976} \\[1em]
-      \fig{.60}{figs/notions-cacm1976.png}\\[.6em]
-      {\Large\bfseries SER}\\[.35em]
-      \blue{serial execution}
-    \end{center}
-
+      \begin{center}
+        \ncite{Notions:CACM1976} \\[1em]
+        \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
+        \blue{\Large\bfseries SER}\\[.1em]
+        {serial execution}
+      \end{center}
     \column{0.45\textwidth}
-    \begin{center}
-      \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
-      \fig{.60}{figs/critique-sigmod1995.png}\\[.35em]
-      \fig{.42}{figs/si-sigmod1995.png}\\[.25em]
-      {\Large\bfseries SI}\quad \red{snapshot + write-conflict control}
-    \end{center}
+      \begin{center}
+        \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+        \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
+        \blue{\Large\bfseries SI}\\[.1em]
+        {snapshot + write-conflict control}
+      \end{center}
   \end{columns}
-  \begin{center}
-    \large Still applicable
-  \end{center}
 \end{frame}
 
 \begin{frame}{Review: Axiomatic Specs}
@@ -44,7 +40,7 @@
   \end{columns}
   \vfill
   \begin{center}
-    \large\red{checking-oriented consistency axioms}
+    \large\red{On checking complexity and algorithms}
   \end{center}
 \end{frame}
 
@@ -55,94 +51,63 @@
       \ncite{Adya:PhDThesis1999} \\[1em]
       \fig{.90}{figs/adya-phdthesis1999.png}
     \end{center}
-    \column{0.45\textwidth}
+    \column{0.55\textwidth}
     \begin{center}
-      \fig{.85}{tikz/depgraph-pred.pdf}\\[.7em]
-      \small A predicate read depends on a witness and on later result-changing writers.
+      \small \textcolor{blue}{$T_{Q}$ also ``observes'' {\bf unmatched} $W(y, 10)$ of $T_{0}$}\\[.5em]
+      \fig{.85}{tikz/depgraph-pred.pdf}\\[.5em]
+      \small \textcolor{purple}{$T_{1}$ later than $T_{0}$ {\bf changes matches} of $T_{Q}$ on $y$}
     \end{center}
   \end{columns}
 \end{frame}
 
 \begin{frame}{Review: Dependency Graphs}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.33\textwidth}
-    \begin{center}
-      \ncite{Adya:ICDE2000} \\[1em]
-      \fig{.95}{figs/adya-icde2000.png}\\[.5em]
-      \small generalized isolation
-    \end{center}
-    \column{0.33\textwidth}
-    \begin{center}
-      \ncite{Vbox:arXiv2025} \\[1em]
-      \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
-      \small earliest result change
-    \end{center}
-    \column{0.33\textwidth}
-    \begin{center}
-      \ncite{ComplexityMIL:CAV2025} \\[1em]
-      \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
-      \small all later writers
-    \end{center}
-  \end{columns}
-  \vfill
   \begin{center}
-    \large\red{Predicate-read dependency definitions differ.}
+    \large\gray{Predicate-read-dependency, $T \rel{\PredWR(x)} S$, definitions differ.} \\[1em]
+    \large\red{Predicate-anti-dependency, $T \rel{\PredRW(x)} S$, definitions differ.} \\[1em]
   \end{center}
-\end{frame}
-
-\begin{frame}{Review: Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
+    \column{0.33\textwidth}
+      \begin{center}
+        \ncite{Adya:PhDThesis1999} \\[1em]
+        \fig{.95}{figs/adya-phdthesis1999.png}\\[.5em]
+        \small $S$ \red{changes matches}
+      \end{center}
     \column{0.33\textwidth}
       \begin{center}
         \ncite{Vbox:arXiv2025} \\[1em]
         \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
-        \small earliest result change
+        \small the \red{``earliest''} $S$
       \end{center}
     \column{0.33\textwidth}
       \begin{center}
-        \ncite{Adya:ICDE2000} \\[1em]
-        \fig{.95}{figs/adya-icde2000.png}\\[.5em]
-        \small generalized isolation
-      \end{center}
-    \column{0.33\textwidth}
-      \begin{center}
-        \ncite{ComplexityMIL:CAV2025} \\[1em]
+        \ncite{Complexity:CAV2025} \\[1em]
         \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
-        \small all later writers
+        \small \red{no} ``change matches''
       \end{center}
   \end{columns}
-  \vfill
-  \begin{center}
-    \Large $\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$\\[.5em]
-    \large\red{predicate-anti-dependency definitions differ.}
-  \end{center}
 \end{frame}
 
 \begin{frame}{Review: SER Characterization}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.50\textwidth}
-      \begin{center}
-        \red{Predicate extensions use different edges, but lack a single rigorous semantic proof bridge.}
-      \end{center}
-    \column{0.50\textwidth}
-      \begin{center}
-        \fig{1.00}{figs/proof-phdthesis1999.png}
-      \end{center}
-  \end{columns}
-  \vfill\hfill\ncite{CC:Bernstein1987,TP:Gray1993,Adya:PhDThesis1999,Adya:ICDE2000,MakingSISER:TODS2005,Emme:EuroSys2024,Emme:TOCS2026,Vbox:arXiv2025}
+  \begin{center}
+    \fig{0.50}{tikz/ser-cite.pdf} \\[.5em]
+    \fig{0.50}{figs/proof-phdthesis1999.png}\\[.8em]
+    \red{No rigorous proof in the literature}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Review: SI Characterization}
   \begin{center}
-    \fig{.90}{figs/adya-phdthesis1999.png}
+    \ncite{Adya:PhDThesis1999}
   \end{center}
   \begin{columns}[c,onlytextwidth]
     \column{0.50\textwidth}
+      \begin{center}
+        \fig{.90}{figs/adya-phdthesis1999.png}
+      \end{center}
     \column{0.50\textwidth}
       \begin{center}
         \large Low level info: 
         \red{Which predicate edges preserve this exact characterization?}
     \end{center}
   \end{columns}
-  \vfill\hfill\ncite{Adya:PhDThesis1999}
 \end{frame}

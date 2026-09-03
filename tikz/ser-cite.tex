@@ -1,3 +1,5 @@
+% ser-cite.tex
+
 \documentclass[tikz, border=3pt]{standalone}
 
 \usepackage[dvipsnames]{xcolor}
@@ -42,10 +44,10 @@
         align = center,
       },
     ]
-    \node[foundation] (cc) at (0, 0)
-      {\footnotesize\textsc{Book}\\[-.2em]\ncite{CC:Bernstein1987}};
-    \node[foundation] (gray) at (40mm, 0)
+    \node[foundation] (gray) at (0, 0)
       {\footnotesize\textsc{Book}\\[-.2em]\ncite{TP:Gray1993}};
+    \node[foundation] (cc) at (40mm, 0)
+      {\footnotesize\textsc{Book}\\[-.2em]\ncite{CC:Bernstein1987}};
 
     \node[bridge] (thesis) at (20mm, 25mm)
       {\footnotesize\textsc{Thesis}\\[-.2em]\ncite{Adya:PhDThesis1999}};
@@ -65,16 +67,14 @@
       {\textbf{The $\mathsf{SER}$ Theorem}\\[-.2em]
        \scriptsize $\mathcal{H}\models\mathsf{SER}\ \Longleftrightarrow\
        \mathsf{DepGraph}(\mathcal{H})\ \mathsf{is\ acyclic}$};
-    \node[font = \scriptsize, text = black!60] at (151mm, 25mm)
-      {$\longrightarrow$\;cites};
 
     % Each arrow points from the citing work to the cited work.
-    \draw[cite edge] (thesis.south west) -- (cc.north east);
-    \draw[cite edge] (thesis.south east) -- (gray.north west);
+    \draw[cite edge] (thesis) -- (cc);
+    \draw[cite edge] (thesis) -- (gray);
     \draw[cite edge] (icde.south west) to[out = 225, in = 25] (cc.east);
     \draw[cite edge] (making.south) -- (icde.north west);
     \draw[cite edge] (emme.south) -- (icde.north);
     \draw[cite edge] (vbox.south) -- (icde.north east);
-    \draw[cite edge] (order.south west) to[out = 235, in = 40] (icde.east);
+    \draw[cite edge] (order) -- (icde.east);
   \end{tikzpicture}
 \end{document}

@@ -22,16 +22,17 @@
     ]
     \node[tx] (w) {$W(x,8)$\\$W(y,10)$\\$W(z,6)$};
     \node[tx, right = 20mm of w] (q)
-      {$\mathit{Salary}<9$\\$\{x\mapsto 8, z\mapsto 6\}$};
-    \node[tx, below = 16mm of q] (u) {$W(z,9)$};
+      {$P: \mathit{Salary}<9$\\$M: \{x\mapsto 8, z\mapsto 6\}$};
+    \node[tx, below = 16mm of q] (u) {$W(y,9)$};
     \node[above = 2.5mm of w] {\textbf{$T_0$}};
     \node[above = 2.5mm of q] {\textbf{$T_Q$}};
     \node[below = 2.5mm of u] {\textbf{$T_1$}};
-    \draw[-Latex, very thick, teal]
-      (w) -- node[above] {$\PredWR(z)$} (q);
+    \draw[-Latex, very thick]
+      (w) -- node[above = 5pt, blue]{$\PredWR(y)$}
+             node[below = 5pt, align = center, cyan]{$\PredWR(x)$\\$\PredWR(z)$} (q);
     \draw[-Latex, very thick, BrickRed]
-      (q) -- node[right] {$\PredRW(z)$} (u);
+      (q) -- node[right] {$\PredRW(y)$} (u);
     \draw[-Latex, very thick, MidnightBlue]
-      (w) to[bend right = 10] node[below, font = \small] {$\WW(z)$} (u);
+      (w) to[bend right = 10] node[below, font = \small, sloped] {$\WW(z)$} (u);
   \end{tikzpicture}
 \end{document}
