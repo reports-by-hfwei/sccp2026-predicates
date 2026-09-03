@@ -1,22 +1,34 @@
-\documentclass[tikz,border=4pt]{standalone}
+\documentclass[tikz,border=3pt]{standalone}
 \usepackage{xcolor}
-\usetikzlibrary{arrows.meta,positioning}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
 \definecolor{Navy}{RGB}{20,54,92}
 \definecolor{Teal}{RGB}{17,119,125}
 \definecolor{Accent}{RGB}{184,63,49}
 \newcommand{\PredRW}{\textup{\textsf{Pred-RW}}}
-\newcommand{\PredRWCAV}{\textup{\textsf{Pred-RW}}^{+}}
-\newcommand{\PredRWarXiv}{\textup{\textsf{Pred-RW}}^{-}}
+\newcommand{\PredRWCAV}{\textup{\textsf{Pred-RW}}^{-}}
+\newcommand{\PredRWarXiv}{\textup{\textsf{Pred-RW}}^{+}}
+\newcommand{\WW}{\textup{\textsf{WW}}}
+\newcommand{\PredWR}{\textup{\textsf{Pred-WR}}}
+\newcommand{\match}{\Delta}
 \newcommand{\ser}{\textup{\textsc{SER}}}
 \newcommand{\si}{\textup{\textsc{SI}}}
 \begin{document}
 \begin{tikzpicture}[font=\sffamily, >=Latex,
-  rel/.style={draw=Navy, rounded corners=4pt, minimum width=39mm, minimum height=15mm, align=center, fill=Navy!5}]
-  \node[rel] (low) {\textbf{$\PredRWarXiv$}\\[-2pt]\scriptsize earliest match-changing writer};
-  \node[rel, right=16mm of low, fill=Teal!9, draw=Teal] (mid) {\textbf{$\PredRW$}\\[-2pt]\scriptsize any match-changing writer};
-  \node[rel, right=16mm of mid, fill=Accent!7, draw=Accent] (high) {\textbf{$\PredRWCAV$}\\[-2pt]\scriptsize every later writer};
-  \draw[-Latex, very thick, Navy] (low) -- node[above, font=\Large] {$\subseteq$} (mid);
-  \draw[-Latex, very thick, Navy] (mid) -- node[above, font=\Large] {$\subseteq$} (high);
-  \node[below=12mm of mid, draw=Teal, rounded corners=4pt, fill=Teal!7, minimum width=103mm, minimum height=13mm, align=center] {\textbf{Same existential history-level characterization} of $\ser$ and $\si$\\[-1pt]\scriptsize edge sets and checking cost may differ};
+  rel/.style={rounded corners=4pt, minimum width=34mm, minimum height=19mm, align=center, inner sep=3pt},
+  inclusion/.style={-Latex, very thick, Navy}]
+  \node[rel, draw=Teal!85!black, fill=Teal!9] (low)
+    {\textbf{$\PredRWarXiv$}\\[-1pt]\scriptsize earliest $\WW$-later\\[-1pt]\scriptsize observation-changing writer};
+  \node[rel, right=8mm of low, draw=Navy, fill=Navy!6] (mid)
+    {\textbf{$\PredRW$}\\[-1pt]\scriptsize every observation-changing\\[-1pt]\scriptsize writer ($\match$ changes)};
+  \node[rel, right=8mm of mid, draw=Accent, fill=Accent!8] (high)
+    {\textbf{$\PredRWCAV$}\\[-1pt]\scriptsize every structurally witnessed\\[-1pt]\scriptsize writer (no $\match$ test)};
+  \draw[inclusion] (low) -- node[above, font=\large] {$\subseteq$} (mid);
+  \draw[inclusion] (mid) -- node[above, font=\large] {$\subseteq$} (high);
+  \begin{scope}[on background layer]
+    \node[draw=Navy!20, fill=Navy!2, rounded corners=6pt, fit=(low) (mid) (high), inner sep=6pt] {};
+  \end{scope}
+  \node[below=7mm of mid, draw=Teal!85!black, rounded corners=4pt, fill=Teal!7,
+        minimum width=112mm, minimum height=10mm, align=center]
+    {\textbf{Fixed $\PredWR/\WW$ base: every intermediate relation preserves the existential $\ser/\si$ characterization.}};
 \end{tikzpicture}
 \end{document}

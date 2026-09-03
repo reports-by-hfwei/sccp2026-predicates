@@ -89,30 +89,40 @@
 
 \begin{frame}{4: Design Space (of Predicate Anti-Dependencies)}
   \begin{center}
-    \Large
-    $\PredRWarXiv \subseteq \mathcal R \subseteq \PredRWCAV$
+    \large
+    $\green{\PredRWarXiv} \subseteq \blue{\mathcal R} \subseteq \red{\PredRWCAV}$
+    \\[-.2em]
+    \scriptsize fixed $\PredWR/\WW$ base
+
+    \fig{.91}{tikz/design-space.pdf}
   \end{center}
-  \vspace{.6em}
+  \vspace{-1.1em}
   \begin{columns}[T,onlytextwidth]
-    \column{.30\textwidth}
-      \begin{block}{Lower frontier}
-        The earliest later write that changes the observation.  It is enough
-        to expose a predicate-consistency violation.
+    \column{.31\textwidth}
+      \begin{block}{Lower bound: frontier}
+        \scriptsize earliest $\WW$-later writer that changes the observation
+        \\[-.2em]\ncite{Vbox:arXiv2025}
       \end{block}
-    \column{.30\textwidth}
+    \column{.31\textwidth}
       \begin{block}{Baseline}
-        All observation-changing later writers.  This is the direct
-        ``changes matches'' reading.
+        \scriptsize all writers that change the matches ($\match$)
+        \\[-.2em]\ncite{Adya:PhDThesis1999,MakingSISER:TODS2005}
       \end{block}
-    \column{.30\textwidth}
-      \begin{block}{Upper closure}
-        All later writers sharing a $\PredWR/\WW$ witness.  It is safe to
-        orient in a witnessing execution.
+    \column{.31\textwidth}
+      \begin{block}{Upper bound: structural}
+        \scriptsize all $\PredWR/\WW$-witnessed writers; no $\match$ test
+        \\[-.2em]\gray{this work; CAV-inspired }\ncite{ComplexityMIL:CAV2025}
       \end{block}
   \end{columns}
-  \vfill
-  \begin{center}
-    \large The same existential SER/SI history characterization.
-  \end{center}
-  \vfill\hfill\ncite{Adya:PhDThesis1999,Vbox:arXiv2025,ComplexityMIL:CAV2025}
+  \vspace{-.2em}
+  \begin{columns}[T,onlytextwidth]
+    \column{.48\textwidth}
+      \begin{block}{``if'': $\PredRWarXiv \subseteq \mathcal R$}
+        \scriptsize frontier edge $+\;$optional $\WW$ path recovers an omitted $\PredRW$ violation
+      \end{block}
+    \column{.48\textwidth}
+      \begin{block}{``only if'': $\mathcal R \subseteq \PredRWCAV$}
+        \scriptsize structural $\PredWR/\WW$ witness $\Rightarrow$ safe $\AR$ orientation
+      \end{block}
+  \end{columns}
 \end{frame}
