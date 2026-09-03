@@ -65,24 +65,29 @@
     \large\gray{Predicate-read-dependency, $T \rel{\PredWR(x)} S$, definitions differ.} \\[1em]
     \large\red{Predicate-anti-dependency, $T \rel{\PredRW(x)} S$, definitions differ.} \\[1em]
   \end{center}
+  \vspace{-1em}
   \begin{columns}[c,onlytextwidth]
     \column{0.33\textwidth}
       \begin{center}
+        \blue{$\PredRW$} \\[1em]
         \ncite{Adya:PhDThesis1999} \\[1em]
         \fig{.95}{figs/adya-phdthesis1999.png}\\[.5em]
         \small $S$ \red{changes matches}
       \end{center}
     \column{0.33\textwidth}
       \begin{center}
+        \blue{$\PredRWarXiv$} \\[1em]
         \ncite{Vbox:arXiv2025} \\[1em]
         \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
         \small the \red{``earliest''} $S$
       \end{center}
     \column{0.33\textwidth}
       \begin{center}
-        \ncite{Complexity:CAV2025} \\[1em]
+        \blue{$\PredRWCAV$} \\[1em]
+        \ncite{Complexity:CAV2025} {\footnotesize (inspired)} \\[1em]
         \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
-        \small \red{no} ``change matches''
+        \small $S$ overwrites $x$, \\
+          require \red{no} ``change matches''
       \end{center}
   \end{columns}
 \end{frame}

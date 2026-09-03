@@ -1,6 +1,6 @@
 % tech.tex
 
-\begin{frame}{1: Axiomatic Specs}
+\begin{frame}{1. Axiomatic Specs}
   \begin{columns}[c,onlytextwidth]
     \column{0.50\textwidth}
       \begin{center}
@@ -22,7 +22,7 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{2: Dependency Graphs}
+\begin{frame}{2. Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
     \column{.50\textwidth}
       \begin{block}{Graph witness}
@@ -41,7 +41,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{3: Characterizations}
+\begin{frame}{3. Characterizations}
   \begin{columns}[T,onlytextwidth]
     \column{.42\textwidth}
       \footnotesize
@@ -87,42 +87,28 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{4: Design Space (of Predicate Anti-Dependencies)}
+\begin{frame}{4. Design Space (of Predicate Anti-Dependencies)}
   \begin{center}
     \large
-    $\green{\PredRWarXiv} \subseteq \blue{\mathcal R} \subseteq \red{\PredRWCAV}$
-    \\[-.2em]
-    \scriptsize fixed $\PredWR/\WW$ base
-
-    \fig{.91}{tikz/design-space.pdf}
+    $\green{\PredRWarXiv} \subseteq \blue{\PredRW} \subseteq \red{\PredRWCAV}$\\[1em]
+    $\green{\PredRWarXiv} \subseteq \blue{\mathcal R} \subseteq \red{\PredRWCAV}$\\[1em]
+    \textcolor{cyan}{Every relation $\mathcal R$ preserves the same existential SER/SI characterization.}
+    % \fig{.90}{tikz/design-space.pdf}
   \end{center}
-  \vspace{-1.1em}
+
+  \begin{center}
+    \fig{.50}{tikz/execution-graph-iff.pdf}
+  \end{center}
+
+  \vspace{-1em}
   \begin{columns}[T,onlytextwidth]
-    \column{.31\textwidth}
-      \begin{block}{Lower bound: frontier}
-        \scriptsize earliest $\WW$-later writer that changes the observation
-        \\[-.2em]\ncite{Vbox:arXiv2025}
-      \end{block}
-    \column{.31\textwidth}
-      \begin{block}{Baseline}
-        \scriptsize all writers that change the matches ($\match$)
-        \\[-.2em]\ncite{Adya:PhDThesis1999,MakingSISER:TODS2005}
-      \end{block}
-    \column{.31\textwidth}
-      \begin{block}{Upper bound: structural}
-        \scriptsize all $\PredWR/\WW$-witnessed writers; no $\match$ test
-        \\[-.2em]\gray{this work; CAV-inspired }\ncite{ComplexityMIL:CAV2025}
-      \end{block}
-  \end{columns}
-  \vspace{-.2em}
-  \begin{columns}[T,onlytextwidth]
-    \column{.48\textwidth}
+    \column{.45\textwidth}
       \begin{block}{``if'': $\PredRWarXiv \subseteq \mathcal R$}
-        \scriptsize frontier edge $+\;$optional $\WW$ path recovers an omitted $\PredRW$ violation
+        \scriptsize $\PredRWarXiv + \WW$ recovers $\PredRW$ in reachability
       \end{block}
     \column{.48\textwidth}
       \begin{block}{``only if'': $\mathcal R \subseteq \PredRWCAV$}
-        \scriptsize structural $\PredWR/\WW$ witness $\Rightarrow$ safe $\AR$ orientation
+        \scriptsize $\PredWR + \WW$ suffices to derive safe $\AR$ orientation
       \end{block}
   \end{columns}
 \end{frame}

@@ -21,31 +21,30 @@
 \newcommand{\si}{\mathsf{SI}}
 
 \begin{document}
-\begin{tikzpicture}[
-  font=\sffamily,
-  >=Latex,
-  node distance=17mm and 18mm,
-  witness/.style={rounded corners=5pt, thick, align=center, inner sep=6pt},
-  history/.style={witness, draw=Navy, fill=Navy!7, minimum width=43mm},
-  execution/.style={witness, draw=Teal!85!black, fill=Teal!9, minimum width=54mm},
-  graph/.style={witness, draw=Accent, fill=Accent!8, text width=54mm},
-  construction/.style={-Latex, very thick, Navy}
-]
-  \node[history] (h) {\textbf{History $\Histo$}};
-  \node[execution, below left=of h] (a)
-    {\textbf{Execution}\\[-1pt]
-     $\Exec=(\Histo,\VIS,\AR)\models\ser/\si$};
-  \node[graph, below right=of h] (g)
-    {\textbf{Depgraph $\Graph_{\Histo}$}\\[-1pt]
-     is acyclic in a certain way};
+	\begin{tikzpicture}[
+		font=\sffamily,
+		>=Latex,
+		witness/.style={font = \footnotesize, rounded corners=5pt, thick, align=center, inner sep=6pt},
+		history/.style={witness, draw=Navy, fill=Navy!7},
+		execution/.style={witness, draw=Teal!85!black, fill=Teal!9},
+		graph/.style={witness, draw=Accent, fill=Accent!8},
+		construction/.style={font = \footnotesize, -Latex, thick, Navy}
+	]
+		\node[history] (h) {\textbf{History $\Histo$}};
+		\node[execution, below left=1.0cm and 0.0cm of h] (a)
+			{\textbf{Execution} \\
+			  $\Exec=(\Histo,\VIS,\AR)\models\ser/\si$};
+		\node[graph, below right=1.0cm and 0.0cm of h] (g)
+			{\textbf{Dependency Graph} \\
+			  $\Graph_{\Histo}$ is acyclic in a certain way};
 
-  \draw[construction] (h.south west) --
-    node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (a.north);
-  \draw[construction] (h.south east) --
-    node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (g.north);
-  \draw[construction, bend left=17] (a.east) to
-    node[above, font=\bfseries\small, fill=white, inner sep=1.5pt] {``only if''} (g.west);
-  \draw[construction, bend left=17] (g.west) to
-    node[below, font=\bfseries\small, fill=white, inner sep=1.5pt] {``if'': by construction} (a.east);
-\end{tikzpicture}
+		\draw[construction] (h.west) --
+			node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (a.north);
+		\draw[construction] (h.east) --
+			node[above, font=\large, fill=white, inner sep=1pt] {$\exists$} (g.north);
+		\draw[construction, bend left=30] (a.east) to
+			node[above, font=\bfseries\small, fill=white, inner sep=1.5pt] {``only if''} (g.west);
+		\draw[construction, bend left=30] (g.west) to
+			node[below, font=\bfseries\small, fill=white, inner sep=1.5pt] {``if''} (a.east);
+	\end{tikzpicture}
 \end{document}
