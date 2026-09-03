@@ -40,53 +40,49 @@
       \fig{.85}{tikz/depgraph-pred.pdf}
   \end{columns}
 \end{frame}
-      % \begin{alertblock}{Proof move}
-      %   In the graph-to-execution direction, assume the constructed execution
-      %   violates an external predicate observation.  The graph witness and the
-      %   execution's latest visible writer then disagree in an observable way,
-      %   forcing $\PredRW$ and hence a forbidden order/cycle.
-      % \end{alertblock}
 
 \begin{frame}{3: Characterizations}
   \begin{columns}[T,onlytextwidth]
-    \column{.49\textwidth}
-      \begin{block}{\textsc{SER} characterization}
-        \footnotesize
-        $\History \models \ser$ iff its transactions are internally consistent
-        and it admits a predicate-aware dependency graph that is
-        \blue{acyclic}.
-      \end{block}
-    \column{.49\textwidth}
-      \begin{block}{\textsc{SI} characterization}
-        \footnotesize
-        $\History \models \si$ iff its transactions are internally consistent
-        and every cycle has two adjacent anti-dependency edges
-        ($\RW$ or $\PredRW$).
-      \end{block}
+    \column{.42\textwidth}
+      \footnotesize
+      \begin{theorem}[\textsc{SER} Characterization]
+        $\History \models \ser$ iff
+        it admits an \blue{acyclic} predicate-aware depgraph.
+      \end{theorem}
+    \column{.52\textwidth}
+      \footnotesize
+      \begin{theorem}[\textsc{SI} Characterization]
+        $\History \models \si$ iff it admits a predicate-aware depgraph
+        where every cycle has two adjacent $\RW/\PredRW$ edges.
+      \end{theorem}
   \end{columns}
 
-  \vspace{-.15em}
+  \vspace{.5em}
   \begin{center}
-    \footnotesize\blue{\bfseries The graph-to-execution (``if'') direction must establish external predicate consistency.}
+    \footnotesize\blue{\bfseries
+      ``if'' direction: construct legal execution $\mathcal{A} \models \textsc{Ext-Pred}$ from graph}
   \end{center}
-  \vspace{-1.2em}
+  \vspace{-.5em}
 
   \begin{columns}[T,onlytextwidth]
-    \column{.49\textwidth}
-      \begin{alertblock}{Challenge 1: mismatched witnesses}
+    \column{.48\textwidth}
+      \begin{alertblock}{Challenge: mismatched witnesses}
         \begin{center}
-          \fig{.50}{tikz/extpred-violation-caseii.pdf}
+          \fig{.70}{tikz/extpred-violation-caseii.pdf}
         \end{center}
-        \scriptsize Mismatch $\Rightarrow \PredRW$
-        $\Rightarrow$ contradicts the required graph order.
+        \vspace{-.5em}
+        \scriptsize
+        violation of \textsc{Ext-Pred} $\Rightarrow$
+        $\PredRW$ $\Rightarrow$ forbidden cycle
       \end{alertblock}
-    \column{.49\textwidth}
-      \begin{alertblock}{Challenge 2 (\textsc{SI}): equivalent omissions}
+    \column{.48\textwidth}
+      \begin{alertblock}{Challenge (\textsc{SI}): mismatched witnesses}
         \begin{center}
-          \fig{.50}{tikz/si-pae-extpred-weaker.pdf}
+          \fig{.67}{tikz/si-pae-extpred-weaker.pdf}
         \end{center}
-        \scriptsize $\match = \mathrm{false} \Rightarrow \nexists\PredRW$:
-        prove valid \textsc{SI}, not exact graph recovery.
+        \vspace{-.5em}
+        \scriptsize
+        no need to recover the exact graph from execution $\mathcal{A}$
       \end{alertblock}
   \end{columns}
 \end{frame}
@@ -118,4 +114,5 @@
   \begin{center}
     \large The same existential SER/SI history characterization.
   \end{center}
+  \vfill\hfill\ncite{Adya:PhDThesis1999,Vbox:arXiv2025,ComplexityMIL:CAV2025}
 \end{frame}
