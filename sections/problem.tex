@@ -1,38 +1,5 @@
 % problem.tex
 
-\begin{frame}{The Missing Bridge}
-  \begin{center}
-    \fig{.96}{tikz/problem.pdf}
-  \end{center}
-  \vfill
-  \begin{block}{The gap}
-    Predicate-aware \blue{specifications} say which executions are legal;
-    predicate \blue{dependency graphs} are useful only when an \emph{exact,
-    two-way characterization} connects them.  That bridge is established for
-    item operations, but was missing for predicate observations.
-  \end{block}
-  \vfill\hfill\ncite{AnalysingSI:JACM2018,ComplexityMIL:CAV2025,Adya:PhDThesis1999,Vbox:arXiv2025}
-\end{frame}
-
-\begin{frame}{Why Predicates Make the Bridge Nontrivial}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.56\textwidth}
-    \begin{center}
-      \fig{.92}{tikz/predicate-observation.pdf}
-    \end{center}
-
-    \column{0.39\textwidth}
-    \large
-    \blue{Item read:} records the value of one named key.\\[.7em]
-    \red{Predicate read:} observes a \emph{set}: both returned keys and
-    covered keys that are absent.\\[.7em]
-    A concurrent write can therefore change the result by making an absent
-    key match---the classical phantom.\\[.7em]
-    \gray{A graph edge must carry enough information to explain that absence.}
-  \end{columns}
-  \vfill\hfill\ncite{CritiqueSQL:SIGMOD1995,Adya:PhDThesis1999}
-\end{frame}
-
 \begin{frame}{What the Missing Bridge Must Deliver}
   \begin{columns}[T,onlytextwidth]
     \column{.47\textwidth}
@@ -55,5 +22,4 @@
       \large The reverse implication is the hard one: construct a legal
       execution \emph{from} a graph without losing predicate semantics.
   \end{columns}
-  \vfill\hfill\ncite{AnalysingSI:JACM2018}
 \end{frame}
