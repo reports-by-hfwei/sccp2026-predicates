@@ -48,34 +48,47 @@
       % \end{alertblock}
 
 \begin{frame}{3: Characterizations}
-  \begin{center}
-    \Large
-    $\PredRWarXiv \subseteq \mathcal R \subseteq \PredRWCAV$
-  \end{center}
-  \vspace{.6em}
   \begin{columns}[T,onlytextwidth]
-    \column{.30\textwidth}
-      \begin{block}{Lower frontier}
-        The earliest later write that changes the observation.  It is enough
-        to expose a predicate-consistency violation.
+    \column{.49\textwidth}
+      \begin{block}{\textsc{SER} characterization}
+        \footnotesize
+        $\History \models \ser$ iff its transactions are internally consistent
+        and it admits a predicate-aware dependency graph that is
+        \blue{acyclic}.
       \end{block}
-    \column{.30\textwidth}
-      \begin{block}{Baseline}
-        All observation-changing later writers.  This is the direct
-        ``changes matches'' reading.
-      \end{block}
-    \column{.30\textwidth}
-      \begin{block}{Upper closure}
-        All later writers sharing a $\PredWR/\WW$ witness.  It is safe to
-        orient in a witnessing execution.
+    \column{.49\textwidth}
+      \begin{block}{\textsc{SI} characterization}
+        \footnotesize
+        $\History \models \si$ iff its transactions are internally consistent
+        and every cycle has two adjacent anti-dependency edges
+        ($\RW$ or $\PredRW$).
       \end{block}
   \end{columns}
-  \vfill
+
+  \vspace{-.15em}
   \begin{center}
-    \large Different fixed graphs; the same existential SER/SI history
-    characterization.  The theorem separates correctness from representation.
+    \footnotesize\blue{\bfseries The graph-to-execution (``if'') direction must establish external predicate consistency.}
   \end{center}
-  \vfill\hfill\ncite{Adya:PhDThesis1999,Vbox:arXiv2025,ComplexityMIL:CAV2025}
+  \vspace{-1.2em}
+
+  \begin{columns}[T,onlytextwidth]
+    \column{.49\textwidth}
+      \begin{alertblock}{Challenge 1: mismatched witnesses}
+        \begin{center}
+          \fig{.50}{tikz/extpred-violation-caseii.pdf}
+        \end{center}
+        \scriptsize Mismatch $\Rightarrow \PredRW$
+        $\Rightarrow$ contradicts the required graph order.
+      \end{alertblock}
+    \column{.49\textwidth}
+      \begin{alertblock}{Challenge 2 (\textsc{SI}): equivalent omissions}
+        \begin{center}
+          \fig{.50}{tikz/si-pae-extpred-weaker.pdf}
+        \end{center}
+        \scriptsize $\match = \mathrm{false} \Rightarrow \nexists\PredRW$:
+        prove valid \textsc{SI}, not exact graph recovery.
+      \end{alertblock}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{4: Design Space (of Predicate Anti-Dependencies)}
