@@ -22,15 +22,15 @@
       align=center,
     },
   ]
-    \node[op] (w2) {\textbf{$W(x,8)$}};
-    \node[op,right=30mm of w2] (r2) {\textbf{$R(x,8)$}};
-    \node[op,below=23mm of $(w2)!0.5!(r2)$] (w3) {\textbf{$W(x,9)$}};
+    \node[op,label=above:{$T'$}] (w8) {\textbf{$W(x,8)$}};
+    \node[op,right=30mm of w8,label=above:{$T$}] (r8) {\textbf{$R(x,8)$}};
+    \node[op,below=23mm of $(w8)!0.5!(r8)$,label=below:{$S$}] (w9) {\textbf{$W(x,9)$}};
 
     \draw[-Latex,very thick,teal]
-      (w2) -- node[above, font=\normalsize] {$\WR(x)$} (r2);
+      (w8) -- node[above, font=\normalsize] {$\WR(x)$} (r8);
     \draw[-Latex,very thick,MidnightBlue]
-      (w2) -- node[below, font=\normalsize, sloped] {$\WW(x)$} (w3);
+      (w8) -- node[below, font=\normalsize, sloped] {$\WW(x)$} (w9);
     \draw[-Latex,very thick,BrickRed]
-      (r2) -- node[below, font=\normalsize, sloped] {$\RW(x)$} (w3);
+      (r8) -- node[below, font=\normalsize, sloped] {$\RW(x)$} (w9);
   \end{tikzpicture}
 \end{document}
