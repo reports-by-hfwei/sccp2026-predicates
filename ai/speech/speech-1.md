@@ -10,7 +10,7 @@ Let me start with the key distinction between item operations and predicate oper
 ## Item Operations vs. Predicate Operations
 
 Look at the employee table.
-An item read identifies a key and returns a value.
+An item read names a key and returns a value.
 The predicate "Salary below 9" instead returns both X and Z, while Y is omitted.
 Under concurrency, that omission also matters.
 
@@ -24,13 +24,12 @@ For item operations, serializability corresponds to serial execution, while snap
 
 ## Review: Axiomatic Specs
 
-We have several axiomatic specification frameworks that formally define the consistency models.
+Axiomatic frameworks such as VIS/AR formally specify these models.**
 
 ## Review: Dependency Graphs
 
-We also have dependency graphs that summarize conflicts through read, write, and anti-dependencies.
-For example, T reads a version written by T', and S later overwrites that version.
-Therefore, T anti-depends on S.
+Dependency graphs summarize read, write, and anti-dependencies.
+Here T reads x from T-prime, and S later overwrites x, creating an anti-dependency from T to S.
 
 ## Review: SER Characterization Theorem
 
@@ -54,11 +53,11 @@ Now consider predicates.
 
 ## Review: Intuitive or Operational Specs
 
-SER and SI retain their intuitive or operational specs.
+The intuitive or operational views of SER and SI still apply.**
 
 ## Review: Axiomatic Specs
 
-Recent predicate-aware semantics rigorously model SQL operations and support checking, but do not provide the dependency graph correspondence.
+Recent predicate-aware semantics model SQL operations rigorously, but do not establish the dependency-graph correspondence.
 
 ## Review: Dependency Graphs
 
@@ -75,11 +74,11 @@ So there is no uniform definition of predicate anti-dependency.
 
 ## Review: SER Characterization
 
-Predicate-aware SER graph conditions have long been used, but their exact correspondence to predicate-aware semantics lacks a rigorous iff proof.
+Predicate-aware SER graph conditions exist, but lack a rigorous two-way correspondence with predicate-aware semantics.
 
 ## Review: SI Characterization
 
-For SI, the gap is sharper: Adya's formulation uses lower-level timing information, while the characterization theorem was proved based on the item-only properties of SI.
+For SI, Adya's formulation uses lower-level timing information, and its proof relies on item-only properties of SI.
 
 ## Review (Summary)
 
@@ -101,21 +100,20 @@ Since S later changes Y from non-matching to matching, we add a predicate anti-d
 
 ## 3. Characterizations
 
-With these specs and dependency graphs, we can now lift the familiar SER and SI graph characterizations to histories with predicates.
+We lift the familiar SER and SI characterizations to histories with predicates.
 
-There are two witness-mismatch issues in the "if" proofs: one common to both SER and SI, and one specific to SI.
-
-We omit the details here.
+The challenge in the "if" direction is witness mismatch.
+Look at the two cases: on the left, a mismatch changes the predicate outcome and exposes a forbidden anti-dependency; on the right, the SI witnesses are observationally equivalent, so exact graph recovery is unnecessary.
 
 ## 4. Design Space (of Predicate Anti-Dependencies)
 
 The proofs also show that one precise anti-dependency relation is not mandatory.
-We identify an interval and every admissible choice in this interval preserves the same existential SER and SI characterization.
+We identify an interval in which every admissible relation preserves the same existential SER and SI characterization.**
 Moreover, the lower bound is sufficient for the "if" direction, while the upper bound is safe for the "only if" direction.
 
 ## Future Work: Downstream Analysis
 
-As mentioned before, our theory enables downstream analysis.
+Our theory enables downstream analysis.
 For example, we can use the lower and upper bounds to guide predicate-aware history checking.
 
 ## Takeaways: Theory Established, Downstream Analysis Enabled
