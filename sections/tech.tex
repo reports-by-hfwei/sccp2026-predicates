@@ -1,47 +1,47 @@
 % tech.tex
 
-\begin{frame}{1. Axiomatic Specs}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.50\textwidth}
-      \begin{center}
-        \fig{.75}{figs/extpredaxiom.png}
-      \end{center}
-    \column{0.50\textwidth}
-      \begin{center}
-        \fig{0.75}{tikz/depgraph-pred.pdf}
-      \end{center}
-  \end{columns}
+\begin{frame}{1. Predicate-Aware Specs}
+  % \begin{columns}[c,onlytextwidth]
+  %   \column{0.50\textwidth}
+  %     \begin{center}
+  %       \fig{.80}{figs/extpredaxiom.png}
+  %     \end{center}
+  %   \column{0.50\textwidth}
+  %     \begin{center}
+  %       \fig{0.75}{tikz/depgraph-pred.pdf}
+  %     \end{center}
+  % \end{columns}
+  \begin{center}
+    \fig{.95}{figs/extpredaxiom.png}
+  \end{center}
 
   \vfill
   \begin{block}{External predicate consistency (\textsc{Ext-Pred} axiom)}
-    For each externally observed key $x$,
-    choose the \textcolor{cyan}{$\AR$-latest} writer visible to the reader. \\[0.20em]
-    Its value must equal the returned value
-    when $x$ \blue{\bf appears} in the result, \\[0.20em]
-    and must fail the predicate when $x$ is \red{\bf omitted}.
+    The \textcolor{red}{$\AR$-latest visible writer}
+    must explain either \textcolor{green}{the returned value}
+    or \textcolor{blue}{the omission}.
   \end{block}
 \end{frame}
 
-\begin{frame}{2. Dependency Graphs}
+\begin{frame}{2. Predicate-Aware Dependency Graphs}
   \begin{columns}[c,onlytextwidth]
     \column{.50\textwidth}
       \begin{block}{Graph witness}
         $T' \rel{\PredWR(y)} T$:
-        $T'$ supplies the version \\
-        by which $T$ externally observes $y$.
+        record the writer explaining (the omission of) $y$
       \end{block}
       \vspace{1em}
       \begin{block}{Observation-changing successor}
         $T \rel{\PredRW(y)} S$:
-        $T' \rel{\WW(y)} S$ and
-        $S$ \red{\bf changes the matches} of $T$ on $y$ wrt $T'$.
+        $S$ later than $T'$ \red{\bf changes} $y$
+        from non-matching to matching
       \end{block}
     \column{.45\textwidth}
       \fig{.85}{tikz/depgraph-pred.pdf}
   \end{columns}
 \end{frame}
 
-\begin{frame}{3. Characterizations}
+\begin{frame}{3. Predicate-Aware Characterizations}
   \begin{columns}[T,onlytextwidth]
     \column{.42\textwidth}
       \footnotesize
@@ -93,7 +93,7 @@
     \large
     % $\green{\PredRWarXiv} \subseteq \blue{\PredRW} \subseteq \red{\PredRWCAV}$\\[1em]
     $\green{\PredRWarXiv} \subseteq \blue{\mathcal R} \subseteq \red{\PredRWCAV}$\\[1em]
-    \textcolor{cyan}{Every relation $\mathcal R$ preserves the same existential SER/SI characterization.}
+    \textcolor{cyan}{Every relation $\mathcal R$ preserves the same SER/SI characterization.}
     % \fig{.90}{tikz/design-space.pdf}
   \end{center}
 

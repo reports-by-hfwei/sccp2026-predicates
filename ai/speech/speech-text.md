@@ -3,17 +3,14 @@
 Hi everyone. I am Hengfeng Wei from Hunan University.
 This is joint work with Si Liu and Yuxing Chen.
 This work develops a semantic and graph-theoretic foundation for transactional consistency with predicates.
-Let me start with the key distinction between item operations and predicate operations.
+Let's start with the distinction between item operations and predicate operations.
 
-Look at the employee table.
-An item read names a key and returns a value.
-The predicate "Salary below 9" instead returns both X and Z, while Y is omitted.
+An item read names a key and returns a value,
+while a predicate read names a condition and returns a set of matched values.
 
-Now, let's review what's well understood without predicates.
+Now, let's review what we know about transactional consistency without predicates.
 
-For item operations, serializability corresponds to serial execution, while snapshot isolation combines snapshot reads with write-conflict control.
-
-Axiomatic spec frameworks formally specify these models.
+Axiomatic spec frameworks formally specify these consistency models.
 
 Dependency graphs summarize read, write, and anti-dependencies.
 
@@ -28,12 +25,11 @@ So without predicates, we have a clean chain from specs, to graphs, to character
 
 Now consider predicates.
 
-The intuitive or operational views of SER and SI still apply.
-
 Recent predicate-aware semantics model SQL operations rigorously, but do not establish the dependency-graph correspondence.
 
-In this example, transaction T returns X and Z, while Y is omitted because the visible version has salary 10.
-Later, S writes salary 9, so Y would now match.
+For dependency graphs, consider this example.
+Transaction T returns X and Z, while Y is omitted because the visible version has salary 10.
+Later, S writes salary 7, so Y would now match.
 The dependency graph captures this change via the PredRW edge from T to S.
 
 But existing work captures this differently:
@@ -49,7 +45,6 @@ This leaves three missing pieces: a semantic interface, uniform predicate depend
 We build that bridge by extending the specification framework, defining predicate-aware dependency graphs, proving SER and SI characterizations, and identifying a design space of predicate anti-dependencies.
 
 The key axiom in the specs is that the latest visible writer must explain either the returned value or the omission.
-For example, the visible writer of Y supplies 10, explaining why Y is omitted.
 
 The predicate-read edge records the writer explaining Y.
 Since S later changes Y from non-matching to matching, we add a predicate anti-dependency from the reader T to S.
@@ -60,7 +55,7 @@ There are two witness-mismatch issues in the "if" direction proofs: one common t
 We omit the details here.
 
 The proofs also show that one precise anti-dependency relation is not mandatory.
-We identify an interval in which every admissible relation preserves the same existential SER and SI characterization.
+We identify an interval in which every relation preserves the same SER and SI characterization.
 Moreover, the lower bound is sufficient for the "if" direction, while the upper bound is safe for the "only if" direction.
 
 Our theory enables downstream analysis.

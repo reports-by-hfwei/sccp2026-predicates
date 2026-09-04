@@ -3,32 +3,31 @@
 \begin{frame}{Review}
   \begin{center}
     {\LARGE
-      What we know about transactional consistency models \\[1em]
+      What we know about transactional consistency \\[1em]
       \red{without predicates}}
   \end{center}
 \end{frame}
 
-\begin{frame}{Review: Intuitive or Operational Specs}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.45\textwidth}
-      \begin{center}
-        \ncite{Notions:CACM1976} \\[1em]
-        \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
-        \blue{\Large\bfseries SER}\\[.1em]
-        {serial execution}
-      \end{center}
-    \column{0.45\textwidth}
-      \begin{center}
-        \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
-        \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
-        \blue{\Large\bfseries SI}\\[.1em]
-        {snapshot read + write-conflict control}
-      \end{center}
-  \end{columns}
-\end{frame}
-        % \fig{.42}{figs/si-sigmod1995.png}\\[0.6em]
+% \begin{frame}{Review: Intuitive or Operational Specs}
+%   \begin{columns}[c,onlytextwidth]
+%     \column{0.45\textwidth}
+%       \begin{center}
+%         \ncite{Notions:CACM1976} \\[1em]
+%         \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
+%         \blue{\Large\bfseries SER}\\[.1em]
+%         {serial execution}
+%       \end{center}
+%     \column{0.45\textwidth}
+%       \begin{center}
+%         \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+%         \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
+%         \blue{\Large\bfseries SI}\\[.1em]
+%         {snapshot read + write-conflict control}
+%       \end{center}
+%   \end{columns}
+% \end{frame}
 
-\begin{frame}{Review: Axiomatic Specs}
+\begin{frame}{Review: Specs}
   \begin{center}
     \ncite{Cerone:CONCUR2015} \\[1em]
     \fig{0.45}{figs/framework-concur2015.png}\\[.5em]
@@ -62,10 +61,16 @@
     \begin{center}
       \fig{0.70}{tikz/depgraph-item.pdf}
     \end{center}
+    \begin{description}
+      \small
+      \item[$\WR$] Write-Read dependency
+      \item[$\WW$] Write-Write dependency
+      \item[$\RW$] Read-Write anti-dependency
+    \end{description}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Review: SER Characterization Theorem}
+\begin{frame}{Review: SER Characterization}
   \begin{columns}[c,onlytextwidth]
     \column{0.40\textwidth}
       \begin{center}
@@ -84,7 +89,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Review: SI Characterization Theorem}
+\begin{frame}{Review: SI Characterization}
   \begin{columns}[c,onlytextwidth]
     \column{0.40\textwidth}
       \begin{center}
@@ -102,7 +107,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Review: Downstream Analysis Tasks}
+\begin{frame}{Review: Downstream Analysis}
   \begin{center}
     \input{tables/review-wo-downstream-analysis-tasks}
   \end{center}
@@ -111,7 +116,7 @@
 \begin{frame}{Review (Summary)}
   \begin{center}
     \vspace{.6em}
-    {\LARGE What we know about transactional consistency models}\\[.35em]
+    {\LARGE What we know about transactional consistency}\\[.35em]
     {\LARGE\red{without predicates}}
   \end{center}
   \vfill

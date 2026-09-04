@@ -2,31 +2,31 @@
 
 \begin{frame}{Review}
   \begin{center}
-    {\LARGE What we know about transactional consistency models}\\[1em]
+    {\LARGE What we know about transactional consistency}\\[1em]
     {\LARGE\red{with predicates}}
   \end{center}
 \end{frame}
 
-\begin{frame}{Review: Intuitive or Operational Specs}
-  \begin{columns}[c,onlytextwidth]
-    \column{0.45\textwidth}
-      \begin{center}
-        \ncite{Notions:CACM1976} \\[1em]
-        \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
-        \blue{\Large\bfseries SER}\\[.1em]
-        {serial execution}
-      \end{center}
-    \column{0.45\textwidth}
-      \begin{center}
-        \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
-        \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
-        \blue{\Large\bfseries SI}\\[.1em]
-        {snapshot + write-conflict control}
-      \end{center}
-  \end{columns}
-\end{frame}
+% \begin{frame}{Review: Intuitive or Operational Specs}
+%   \begin{columns}[c,onlytextwidth]
+%     \column{0.45\textwidth}
+%       \begin{center}
+%         \ncite{Notions:CACM1976} \\[1em]
+%         \fig{.50}{figs/notions-cacm1976.png}\\[1.0em]
+%         \blue{\Large\bfseries SER}\\[.1em]
+%         {serial execution}
+%       \end{center}
+%     \column{0.45\textwidth}
+%       \begin{center}
+%         \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
+%         \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
+%         \blue{\Large\bfseries SI}\\[.1em]
+%         {snapshot + write-conflict control}
+%       \end{center}
+%   \end{columns}
+% \end{frame}
 
-\begin{frame}{Review: Axiomatic Specs}
+\begin{frame}{Review: Predicate-Aware Specs}
   \begin{columns}[c,onlytextwidth]
     \column{0.50\textwidth}
       \begin{center}
@@ -41,7 +41,7 @@
   \vfill
   \begin{center}
     \large\blue{On checking complexity and algorithms};
-      \red{No dependency graph correspondence}
+      \red{No dependency-graph correspondence}
   \end{center}
 \end{frame}
 
@@ -61,48 +61,52 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}{Review: Dependency Graphs}
+\begin{frame}{Review: Predicate-Aware Dependency Graphs}
   \begin{center}
-    \large\gray{Predicate-read-dependency, $T \rel{\PredWR(x)} S$, definitions differ.} \\[.2em]
-    \large\red{Predicate-anti-dependency, $T \rel{\PredRW(x)} S$, definitions differ.}
-      \blue{($\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$)} \\[1em]
+    \blue{$\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$ \qquad
+      ($T \rel{\PredRW(x)} S$)}
   \end{center}
-  \vspace{-1em}
+  \vspace{-.5em}
   \begin{columns}[c,onlytextwidth]
     \column{0.33\textwidth}
       \begin{center}
-        \blue{$\PredRW$} \\[1em]
+        \blue{$\PredRW$} \\[.5em]
         \ncite{Adya:PhDThesis1999} \\[1em]
         \fig{.95}{figs/adya-phdthesis1999.png}\\[.5em]
         \small $S$ \red{changes matches}
       \end{center}
     \column{0.33\textwidth}
       \begin{center}
-        \blue{$\PredRWarXiv$} \\[1em]
+        \blue{$\PredRWarXiv$} \\[.5em]
         \ncite{Vbox:arXiv2025} \\[1em]
         \fig{.95}{figs/vbox-arxiv2025.png}\\[.5em]
         \small the \red{``earliest''} $S$
       \end{center}
     \column{0.33\textwidth}
       \begin{center}
-        \blue{$\PredRWCAV$} \\[1em]
+        \blue{$\PredRWCAV$} \\[.5em]
         \ncite{ComplexityMIL:CAV2025} {\scriptsize (this work; CAV-inspired)} \\[1em]
         \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
         \small $S$ overwrites $x$, \\
           \red{drops} ``change matches''
       \end{center}
   \end{columns}
-\end{frame}
-
-\begin{frame}{Review: SER Characterization}
+  \vspace{.5em}
   \begin{center}
-    \fig{0.55}{tikz/ser-cite.pdf} \\[.5em]
-    \fig{0.50}{figs/proof-phdthesis1999.png}\\[.8em]
-    \red{AFAWK, no published rigorous proof in the literature}
+    \large\red{No uniform definition of predicate-anti-dependency} \\[.2em]
+    \large\gray{\scriptsize (No uniform definition of predicate-read-dependency either)} \\[.2em]
   \end{center}
 \end{frame}
 
-\begin{frame}{Review: SI Characterization}
+\begin{frame}{Review: Predicate-Aware SER Characterization}
+  \begin{center}
+    \fig{0.55}{tikz/ser-cite.pdf} \\[.5em]
+    \fig{0.50}{figs/proof-phdthesis1999.png}\\[.8em]
+    \red{Lack a rigorous proof of the correspondence with predicate-aware semantics}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Review: Predicate-Aware SI Characterization}
   \begin{center}
     \ncite{Adya:PhDThesis1999} \\[1em]
     \fig{.30}{figs/adya-phdthesis1999.png}
@@ -111,12 +115,12 @@
     \column{0.50\textwidth}
       \begin{center}
         \fig{.95}{figs/si-depgraph-phdthesis1999.png} \\[.5em]
-        \red{\small G-SIa: Low-level {\it start-depends} $\prec_{t}$ relation}
+        \red{\small G-SIa: uses low-level timing information}
       \end{center}
     \column{0.50\textwidth}
       \begin{center}
         \fig{.90}{figs/si-specs-phdthesis1999.png}
-        \red{\small Proof based on {\it item-only} properties of SI}
+        \red{\small Proof relies on {\it item-only} properties of SI}
       \end{center}
   \end{columns}
 \end{frame}
@@ -124,7 +128,7 @@
 \begin{frame}{Review (Summary)}
   \begin{center}
     \vspace{.6em}
-    {\LARGE What we know about transactional consistency models}\\[.35em]
+    {\LARGE What we know about transactional consistency}\\[.35em]
     {\LARGE\red{with predicates}}
   \end{center}
   \vfill
