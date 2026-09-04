@@ -18,3 +18,8 @@ Look at the two cases: on the left, a mismatch changes the predicate outcome and
 There are two witness-mismatch issues in the "if" direction proofs: one common to both SER and SI, and one specific to SI.
 
 We omit the details here.
+
+Here T reads x from T-prime, and S later overwrites x, creating an anti-dependency from T to S.
+
+The challenge in the "if" direction is witness mismatch.
+On the left, a mismatch changes the predicate outcome and exposes a forbidden anti-dependency; on the right, the SI witnesses are observationally equivalent, so exact graph recovery is unnecessary.
