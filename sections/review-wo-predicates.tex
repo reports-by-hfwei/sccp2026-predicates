@@ -22,7 +22,7 @@
         \ncite{CritiqueSQL:SIGMOD1995} \\[1em]
         \fig{.85}{figs/critique-sigmod1995.png}\\[1.0em]
         \blue{\Large\bfseries SI}\\[.1em]
-        {snapshot + write-conflict control}
+        {snapshot read + write-conflict control}
       \end{center}
   \end{columns}
 \end{frame}
@@ -96,7 +96,7 @@
         \begin{theorem}[roughly stated]
           An item-operation history satisfies SI iff \\
           every cycle of its dependency graph has at least \\
-          two adjacent anti-dpendency ($\RW$) edges.
+          two adjacent anti-dependency ($\RW$) edges.
         \end{theorem}
       \end{center}
   \end{columns}
