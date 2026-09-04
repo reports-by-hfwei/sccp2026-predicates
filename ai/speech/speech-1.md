@@ -54,7 +54,7 @@ Now consider predicates.
 
 ## Review: Intuitive or Operational Specs
 
-SER and SI retain their intuition.
+SER and SI retain their intuitive or operational specs.
 
 ## Review: Axiomatic Specs
 
@@ -123,7 +123,7 @@ Moreover, the lower and upper bound corresponds to the "if" and the "only if" di
 As mentioned before, our theory enables downstream analysis.
 For example, we can use the lower and upper bounds to guide the history checker.
 
-## Takeaways: Theory Established, Downstrem Analysis Enabled
+## Takeaways: Theory Established, Downstream Analysis Enabled
 
 The takeaway is simple.
 We provide the bridge between specs and dependency graphs: including predicate-aware semantics, dependencies, SER and SI characterizations, and a proof-theoretic design space.

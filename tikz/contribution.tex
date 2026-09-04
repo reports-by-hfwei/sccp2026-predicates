@@ -12,7 +12,7 @@
     align=center,minimum width=3.35cm,minimum height=1.2cm,inner sep=4pt},
   result/.style={draw=teal!70!black,rounded corners=4pt,fill=teal!8,
     align=center,minimum width=3.25cm,minimum height=1.1cm,inner sep=4pt}]
-  \node[box] (spec) {\textbf{1. Axomatic Specs}\\[-1pt]\scriptsize $(\mathsf{VIS}, \mathsf{AR})$};
+  \node[box] (spec) {\textbf{1. Axiomatic Specs}\\[-1pt]\scriptsize $(\mathsf{VIS}, \mathsf{AR})$};
   \node[box,right=1.05cm of spec] (dep) {\textbf{2. Dependency graphs}\\[-1pt]\scriptsize $\PredWR$, $\PredRW$, and $\match$};
   \draw[-Latex,very thick,MidnightBlue] (spec) -- (dep);
   \node[result,fill=red!10,below=1.10cm of spec] (theorem) {\textbf{3. Characterizations}\\[-1pt]\scriptsize SER\&SI theorems};

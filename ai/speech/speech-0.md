@@ -96,6 +96,6 @@ The proofs show that one precise anti-dependency relation is not mandatory. Betw
 
 This suggests a practical direction: use the lower and upper relations as bounds for predicate-aware history checking, then extend the same foundation to verification and robustness.
 
-## Takeaways: Theory Established, Downstrem Analysis Enabled
+## Takeaways: Theory Established, Downstream Analysis Enabled
 
 The takeaway is simple. Predicate reads make omitted items semantically relevant, and existing graph reasoning lacked an exact bridge to that fact. We provide that bridge: predicate-aware semantics, dependencies, SER and SI characterizations, and a proof-guided design space. [PAUSE] This gives downstream analyses a correctness foundation without forcing one unique predicate-edge representation.

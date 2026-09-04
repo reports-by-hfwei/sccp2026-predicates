@@ -63,8 +63,9 @@
 
 \begin{frame}{Review: Dependency Graphs}
   \begin{center}
-    \large\gray{Predicate-read-dependency, $T \rel{\PredWR(x)} S$, definitions differ.} \\[1em]
-    \large\red{Predicate-anti-dependency, $T \rel{\PredRW(x)} S$, definitions differ.} \\[1em]
+    \large\gray{Predicate-read-dependency, $T \rel{\PredWR(x)} S$, definitions differ.} \\[.2em]
+    \large\red{Predicate-anti-dependency, $T \rel{\PredRW(x)} S$, definitions differ.}
+      \blue{($\PredRWarXiv \subseteq \PredRW \subseteq \PredRWCAV$)} \\[1em]
   \end{center}
   \vspace{-1em}
   \begin{columns}[c,onlytextwidth]
@@ -85,7 +86,7 @@
     \column{0.33\textwidth}
       \begin{center}
         \blue{$\PredRWCAV$} \\[1em]
-        \ncite{Complexity:CAV2025} {\footnotesize (inspired)} \\[1em]
+        \ncite{ComplexityMIL:CAV2025} {\footnotesize (this work; CAV-inspired)} \\[1em]
         \fig{.95}{figs/complexity-cav2025.png}\\[.5em]
         \small $S$ overwrites $x$, \\
           require \red{no} ``change matches''
@@ -97,7 +98,7 @@
   \begin{center}
     \fig{0.55}{tikz/ser-cite.pdf} \\[.5em]
     \fig{0.50}{figs/proof-phdthesis1999.png}\\[.8em]
-    \red{No rigorous proof in the literature}
+    \red{AFAWK, no published rigorous proof in the literature}
   \end{center}
 \end{frame}
 
