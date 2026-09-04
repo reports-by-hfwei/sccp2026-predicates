@@ -17,14 +17,14 @@ Axiomatic spec frameworks formally specify these models.
 
 Dependency graphs summarize read, write, and anti-dependencies.
 
-We also have the serializability characterization theorem.
+We also have the SER characterization theorem.
 Roughly, an item-only history is serializable exactly when its dependency graph is acyclic.
 
-For snapshot isolation, every cycle must contain at least two adjacent anti-dependencies.
+For SI, every cycle must contain at least two adjacent anti-dependencies.
 
 These characterizations support history checking, protocol verification, and program robustness analysis.
 
-So without predicates, we have a clean chain from specifications, to graphs, to characterization theorems, and then to downstream analysis.
+So without predicates, we have a clean chain from specs, to graphs, to characterizations, and then to downstream analysis.
 
 Now consider predicates.
 
@@ -44,7 +44,7 @@ Predicate-aware SER graph conditions exist, but lack a rigorous two-way correspo
 
 For SI, Adya's formulation uses lower-level timing information, and its proof relies on item-only properties of SI.
 
-This leaves three missing pieces: a semantic interface, uniform predicate dependencies, and exact SER and SI graph characterizations. [PAUSE]
+This leaves three missing pieces: a semantic interface, uniform predicate dependencies, and exact SER and SI graph characterizations.
 
 We build that bridge by extending the specification framework, defining predicate-aware dependency graphs, proving SER and SI characterizations, and identifying a design space of predicate anti-dependencies.
 
@@ -67,4 +67,4 @@ Our theory enables downstream analysis.
 For example, we can use the lower and upper bounds to guide predicate-aware history checking.
 
 In summary, we build the bridge through predicate-aware semantics, dependency graphs, exact SER and SI characterizations, and a proof-theoretic design space.
-[PAUSE] This gives downstream analyses a correctness foundation.
+This gives downstream analyses a correctness foundation.
